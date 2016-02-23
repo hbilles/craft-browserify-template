@@ -1,0 +1,184 @@
+// --------------------------------------------------------------------------
+// menu and nav
+
+nav {
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		margin: 0;
+		list-style: none;
+
+		line-height: 1.1;
+	}
+}
+
+.menu__mobile {
+
+	background-color: $clr-ui-link-hover;
+
+	@include media($large) {
+		display: none;
+	}
+
+	li {
+		font-size: rem(20);
+
+		@include media($medium) {
+			font-size: rem(24);
+		}
+	}
+
+	a {
+		display: block;
+		padding: 1.5em 1em;
+
+		border-bottom: 1px solid rgba(255, 255, 255, .3);
+
+		&:link,
+		&:visited {
+			color: $clr-off-white;
+			background-color: $clr-ui-link-hover;
+
+			.menu-itemDescription {
+				//color: $;
+			}
+		}
+
+		&:hover,
+		&:visited:hover {
+			color: $clr-white;
+			background-color: $clr-ui-link;
+
+			.menu-itemHeading {
+				//text-decoration: underline;
+			}
+
+			.menu-itemDescription {
+				color: $clr-white;
+			}
+		}
+
+		@include media($medium) {
+			span {
+				display: block;
+				width: $width-medium;
+				margin: 0 auto;
+			}
+		}
+	}
+}
+
+.js .menu__mobile {
+	display: none;
+
+	position: absolute;
+	top: $mh-height-small; // Height of masthead
+	left: 0;
+	right: 0;
+	bottom: 0;
+	
+	border-top: 1px solid rgba(255, 255, 255, .3);
+
+	@include media($medium) {
+		top: 6.4em;
+	}
+}
+
+.menu__desktop {
+	display: none;
+
+	//position: absolute;
+	//top: 2.4em;
+	//right: 1em;
+	margin: 0;
+
+	@include media($medium) {
+		display: block;
+		text-align: center;
+	}
+
+	@include media($large) {
+		position: absolute;
+		top: 1.4em;
+		right: 1em;
+		
+		text-align: left;
+	}
+
+	li {
+		display: inline-block;
+		padding: .75em .125em;
+
+		@include media($medium) {
+			font-size: rem($fs-body-small);
+		}
+	}
+
+	.link__home {
+		display: none;
+	}
+
+	a {
+		padding: .5em;
+
+		&:link,
+		&:visited {
+			color: $clr-ui-link-hover;
+		}
+
+		&.current,
+		&:hover,
+		&:visited:hover {
+			color: $clr-ui-link;
+		}
+	}
+}
+
+.prev-next {
+	@include clearfix;
+	margin: 0 1em 1.5em;
+
+	@include media($medium) {
+		width: $width-medium;
+		margin: 0 auto 1.5em;
+	}
+
+	@include media($large) {
+		width: $width-large;
+	}
+}
+
+.prev,
+.next {
+	a {
+		&:link,
+		&:visited {
+			color: $clr-off-white;
+		}
+	}
+}
+
+.prev {
+	float: left;
+
+	a {
+		&:before {
+			@extend %icon-left;
+			padding: 0 .25em 0 0;
+		}
+	}
+}
+
+.next {
+	float: right;
+
+	a {
+		&:after {
+			@extend %icon-right;
+			padding: 0 0 0 .25em;
+		}
+	}
+}

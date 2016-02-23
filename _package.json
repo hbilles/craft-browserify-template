@@ -1,0 +1,85 @@
+{
+  "name": "<%= domainName %>",
+  "description": "Website code repo for <%= siteName %>",
+  "repository": {
+    "type": "git",
+    "url": "https://git@bitbucket.org/line58/<%= domainName %>.git"
+  },
+  "version": "0.0.1",
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "jquery": "./node_modules/jquery/dist/jquery.js",
+    "lodash": "./node_modules/lodash",
+    "chosen": "./src/js/vendor/chosen.customized.jquery.js",
+    "fitVids": "./src/js/vendor/jquery.fitvids.js",
+    "wolfy87-eventemitter": "./node_modules/wolfy87-eventemitter/EventEmitter.js",
+    "eventie": "./node_modules/eventie/eventie.js",
+    "imagesLoaded": "./node_modules/imagesloaded/imagesloaded.js",
+    "matchHeight": "./node_modules/jquery-match-height/jquery.matchHeight.js",
+    "placeholder": "./node_modules/jquery-placeholder/jquery.placeholder.js",
+    "validate": "./src/js/vendor/jquery.validate.js",
+    "validateAdditional": "./src/js/vendor/jquery.validate.additional.js",
+    "velocity": "./node_modules/velocity-animate/velocity.js",
+    "velocity-ui": "./node_modules/velocity-animate/velocity.ui.js"
+  },
+  "browserify-shim": {
+    "fitVids": {
+      "depends": [
+        "jquery:window.jQuery"
+      ]
+    },
+    "matchHeight": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    },
+    "placeholder": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    },
+    "validate": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    },
+    "validateAdditional": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "browserify": "13.0.0",
+    "browserify-shim": "^3.8.12",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-if": "^2.0.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-minify-css": "^1.2.3",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "node-bourbon": "^4.2.3",
+    "node-neat": "^1.7.2",
+    "rimraf": "^2.5.2",
+    "run-sequence": "^1.1.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "yargs": "^4.1.0"
+  },
+  "dependencies": {
+    "imagesloaded": "^4.1.0",
+    "jquery": "^2.2.1",
+    "jquery-match-height": "^0.7.0",
+    "jquery-placeholder": "^2.3.1",
+    "lodash": "^4.5.1",
+    "velocity-animate": "^1.2.3",
+    "node-waves": "^0.7.5"
+  }
+}

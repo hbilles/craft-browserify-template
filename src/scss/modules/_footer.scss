@@ -1,0 +1,115 @@
+// --------------------------------------------------------------------------
+// =footer
+
+.footer {
+	@extend %bg--dark-grey;
+}
+
+footer#meta {
+	p,
+	li,
+	address,
+	.phone {
+		font-size: em($fs-body-small);
+		line-height: 1.4;
+	}
+}
+
+.footer__heading {
+	font-size: em($fs-h4-small);
+	margin-top: 0;
+}
+
+.footer__about,
+.footer__nav,
+.footer__contact {
+	margin: 0 0 1.5em;
+}
+
+.footer__about {
+	@include media($large) {
+		display: inline-block;
+		vertical-align: top;
+		width: 44%;
+		margin-right: 8%;
+	}
+}
+
+.footer__nav {
+	@include media($medium) {
+		display: inline-block;
+		vertical-align: top;
+		width: 48%;
+		margin-right: 4%;
+	}
+
+	@include media($large) {
+		width: 18%;
+		margin-right: 2%;
+	}
+}
+
+.footer__contact {
+	@include media($medium) {
+		display: inline-block;
+		vertical-align: top;
+		width: 48%;
+	}
+
+	@include media($large) {
+		width: 20%;
+	}
+
+	.social-media {
+		margin: 1em 0 0;
+	}
+}
+
+.footer__contact-link {
+	display: block;
+}
+
+.footer__in {
+	@include clearfix;
+	margin: 0 1em;
+	padding: 2em 0;
+
+	@include media($medium) {
+		width: $width-medium;
+		margin: 0 auto;
+		padding: 3em 0 0;
+	}
+
+	@include media($large) {
+		width: $width-large;
+	}
+}
+
+#fineprint {
+	text-align: center;
+
+	.footer__in {
+		border-top: 1px solid rgba(255, 255, 255, .3);
+
+		@include media($medium) {
+			padding: 2em 0 1em;
+		}
+	}
+
+	.copyright,
+	.credits {
+		font-size: em($fs-fine-small);
+	}
+}
+
+.copyright {
+	@include media($medium) {
+		float: left;
+	}
+}
+
+.credits {
+	@include media($medium) {
+		float: right;
+	}
+}

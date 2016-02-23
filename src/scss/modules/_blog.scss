@@ -1,0 +1,175 @@
+// --------------------------------------------------------------------------
+// =blog
+
+
+// --------------------------------------------------------------------------
+// List Items
+
+.leadinBlog {
+	.posts {
+		@include media($large) {
+			@include span-columns(12);
+		}
+	}
+
+	.post-list-item {
+		margin: 0 0 1.5em;
+
+		@include media($large) {
+			@include span-columns(4 of 12);
+			@include omega(3n);
+		}
+
+		h3 {
+			text-transform: none;
+
+			@include media($medium) {
+				font-size: rem($fs-h3-small);
+			}
+		}
+	}
+
+	.post-list-meta {
+		@include media($large) {
+			font-size: rem($fs-fine-medium);
+		}
+	}
+
+	.post-list-summary {
+		@include media($large) {
+			font-size: rem($fs-body-small);
+		}
+	}
+}
+
+.post-list-card {
+	margin: 0 0 1.5em;
+
+	a {
+		display: block;
+		padding: 1em;
+
+		@include media($medium) {
+			padding: 2em;
+		}
+
+		&:link,
+		&:visited {
+			background-color: $clr-white;
+
+			h3,
+			p {
+				@include transition(all 0.2s ease-in-out);
+			}
+
+			.post-list-meta,
+			.post-list-summary {
+				color: $clr-ui-text;
+			}
+		}
+
+		&:hover,
+		&:visited:hover {
+			background-color: $clr-ui-link;
+
+			h3,
+			.post-list-meta,
+			.post-list-summary {
+				color: $clr-white;
+			}
+
+			.button {
+				color: $clr-ui-link;
+				background-color: $clr-white;
+			}
+		}
+	}
+
+	h3 {
+		margin-top: 0;
+	}
+
+	.more {
+		margin: 0;
+	}
+}
+
+.post-list-meta {
+	margin: -1em 0 0;
+	font-size: rem($fs-fine-small);
+	text-transform: uppercase;
+	letter-spacing: .5px;
+
+	@include media($medium) {
+		font-size: rem($fs-fine-medium);
+	}
+
+	@include media($large) {
+		font-size: rem($fs-body-small);
+	}
+}
+
+.post-list-date {
+	font-weight: 700;
+}
+
+.post-list-summary {
+	margin: 0 0 .5em;
+}
+
+
+// --------------------------------------------------------------------------
+// Post
+
+.post-postDate {
+	display: block;
+	margin: 0 0 1.5em;
+
+	@include font-sans();
+	font-size: em($fs-fine-small);
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 2;
+	letter-spacing: 2px;
+
+	@include media($medium) {
+		font-size: em($fs-bump-medium);
+	}
+}
+
+.block__blockquote {
+	position: relative;
+
+	&:before,
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 5em;
+		height: 0;
+		border-top: 2px solid $clr-grey;
+
+		@include media($medium) {
+			width: 8em;
+		}
+	}
+
+	&:before {
+		top: 0;
+	}
+
+	&:after {
+		bottom: 0;
+	}
+
+	.source {
+		@include font-sans();
+
+		&:before {
+			content: '- ';
+		}
+	}
+}

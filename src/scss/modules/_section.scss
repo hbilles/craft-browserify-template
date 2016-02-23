@@ -1,0 +1,91 @@
+// --------------------------------------------------------------------------
+// =section (basic content building blocks)
+
+.section {
+
+	&:nth-child(odd) {
+		background-color: $clr-off-white;
+	}
+}
+
+.section--intro {
+	text-align: center;
+
+	.section__in {
+		@include media($medium) {
+			padding: 6em 0;
+		}
+	}
+}
+
+.section__in {
+	@include outer-container;
+
+	margin: 0 1em;
+	padding: 2em 0;
+
+	@include media($medium) {
+		width: $width-medium;
+		margin: 0 auto;
+		padding: 3em 0;
+	}
+
+	@include media($large) {
+		width: $width-large;
+	}
+
+	& > *:first-child {
+		margin-top: 0;
+	}
+
+	& > *:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.section__hdr {
+	margin: 0 0 1.625em;
+	text-align: center;
+	border-bottom: 3px solid;
+}
+
+// applied to container for actual button
+.section__button {
+	text-align: center;
+}
+
+.section__ftr {
+
+}
+
+.section__subheading {
+	margin: 0 0 1.5em;
+	@include font-sans();
+	text-transform: uppercase;
+	font-size: em($fs-h3-small);
+	letter-spacing: 1px;
+	
+	color: $clr-light-grey;
+
+	@include media($medium) {
+		margin: 0 0 1.5em;
+		font-size: em($fs-h3-medium);
+	}
+}
+
+.section__summary {
+	text-align: center;
+
+	p,
+	li {
+		font-size: rem($fs-summary-small);
+
+		@include media($medium) {
+			font-size: rem($fs-summary-medium);
+		}
+
+		@include media($large) {
+			font-size: rem($fs-summary-large);
+		}
+	}
+}

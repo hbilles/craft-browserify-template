@@ -1,0 +1,20 @@
+body {
+	background-color: $clr-lightest-grey;
+}
+
+#site {
+	position: relative;
+	background-color: $clr-white;
+}
+
+#page {
+	padding-top: $mh-height-small; //masthead height
+
+	@include media($medium) {
+		padding-top: $mh-height-medium;
+	}
+
+	@include media($large) {
+		padding-top: $mh-height-large;
+	}
+}

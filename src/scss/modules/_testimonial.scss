@@ -1,0 +1,18 @@
+// --------------------------------------------------------------------------
+// =testimonial
+
+.gallery {
+	.testimonial {
+		@include media($medium) {
+			margin: 0;
+		}
+	}
+}
+
+.quotation {
+	position: relative;
+
+	&:before {
+		@extend %icon-open-quote;
+	}
+}

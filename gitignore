@@ -1,0 +1,13 @@
+public/images/*
+!public/images/cache/index.html
+public/files/*
+public/ui/build/*
+
+.sass-cache/*
+public/ui/.sass-cache/*
+
+node_modules/*
+
+public/ui/bower_components/*
+
+*.sublime-workspace
