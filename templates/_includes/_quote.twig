@@ -1,0 +1,9 @@
+<blockquote class="quote{% if class is defined %} {{ class }}{% endif %}">
+	<div class="quote__copy">{{ quote.copy | md }}</div>
+
+	{% if quote.speaker|length %}
+	<p class="quote__source">
+		<span class="quote__speaker">{{ quote.speaker }}{% if quote.speakerTitle %} <span class="quote__speaker__title">{{ quote.speakerTitle }}</span>{% endif %}</span>
+	</p>
+	{% endif %}
+</blockquote>

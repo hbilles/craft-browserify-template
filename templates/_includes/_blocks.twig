@@ -6,59 +6,96 @@
 
 		{% case 'text' %}
 
-			<div class="block__text">
-				{{ block.text | pd }}
+			<div class="block block__text">
+				<div class="block__in">{{ block.text | pd }}</div>
 			</div>
 
-		{% case 'heading' %}
+		{% case 'quote' %}
 
-			<h2 class="block__heading">{{ block.heading }}</h2>
+			<div class="block block__quote">
+				<div class="block__in">
+					<blockquote class="quote">
+						<div class="quote__copy">{{ block.quote | md }}</div>
 
-		{% case 'blockquote' %}
-
-			<blockquote class="block__blockquote">
-				{{ block.quote | pd }}
-
-				{% if block.source %}
-				<p class="source">
-					{{ block.source }}
-				</p>
-				{% endif %}
-			</blockquote>
+						{% if block.speaker | length %}
+						<p class="quote__source">
+							<span class="quote__speaker">{{ block.speaker }}{% if block.speakerTitle %} <span class="quote__speaker__title">{{ block.speakerTitle }}</span>{% endif %}</span>
+						</p>
+						{% endif %}
+					</blockquote>
+				</div>
+			</div>
 
 		{% case 'pullquote' %}
 
-			<blockquote class="block__pullquote">
-				{{ block.pullquote | pd }}
-			</blockquote>
+			<div class="block block__pullquote">
+				<div class="block__in">
+					<blockquote class="pullquote">
+						{{ block.pullquote | pd }}
+					</blockquote>
+				</div>
+			</div>
 
 		{% case 'image' %}
 
-			{% for asset in block.image %}
-				<figure class="block__image">
-					<img src="{{ asset.getUrl('large') }}" alt="">
-					
-					{% if asset.caption %}
-						<figcaption class="block__caption">
-							{{ asset.caption | pd }}
-						</figcaption>
-					{% endif %}
-				</figure>
-			{% endfor %}
+			<figure class="block block__image">
+				{% set imageSize = 'large' %}
+				{% if block.imagePosition == 'full' %}
+					{% set imageSize = 'xLarge' %}
+				{% endif %}
+
+				{% if block.imagePosition != 'full' %}<div class="block__in">{% endif %}
+					{% for asset in block.image %}
+						<img src="{{ asset.getUrl(imageSize) }}" alt="">
+						
+						{% if block.caption %}
+							<figcaption class="block__caption">
+								{{ block.caption | pd }}
+							</figcaption>
+						{% elseif asset.caption %}
+							<figcaption class="block__caption">
+								{{ asset.caption | pd }}
+							</figcaption>
+						{% endif %}
+					{% endfor %}	
+				{% if block.imagePosition != 'full' %}</div>{% endif %}
+			</figure>
 
 		{% case 'video' %}
 
 			{% set video = craft.embedder.url(block.video) %}
 
-			<figure class="block__video">
-				{{ video.embed_code }}
+			<figure class="block block__video">
+				<div class="block__in">
+					{{ video.embed_code }}
+					
+					{% if block.caption %}
+						<figcaption class="block__caption">
+							{{ block.caption | pd }}
+						</figcaption>
+					{% endif %}
+				</div>
+			</figure>
+
+		{% case 'slideshow' %}
+
+			<div class="block__slideshow">
+				{% if block.showItems == '1' %}<div class="block__in">{% endif %}
+				<div class="block__gallery" data-showitems="{{ block.showItems }}">
+				{% for asset in block.images %}
+					<figure class="block__slide">
+						<img src="{{ asset.getUrl('largeGolden') }}" width="{{ asset.getWidth('largeGolden') }}" height="{{ asset.getHeight('largeGolden') }}" alt="{{ asset.caption }}">
+					</figure>
+				{% endfor %}
+				</div>
 				
 				{% if block.caption %}
-					<figcaption class="block__caption">
-						{{ block.caption | pd }}
-					</figcaption>
+				<figcaption class="block__caption">
+					{{ block.caption | pd }}
+				</figcaption>
 				{% endif %}
-			</figure>
+				{% if block.showItems == '1' %}</div>{% endif %}
+			</div>
 
 	{% endswitch %}
 

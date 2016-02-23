@@ -1,0 +1,65 @@
+// --------------------------------------------------------------------------
+// =quote
+
+.quote {
+	//border-bottom: $border-medium solid green;
+
+	text-align: left;
+
+	&__copy {
+		@include font-sans(400);
+
+		p {
+			&:first-child {
+				&::before {
+					content: '\201c';
+				}
+			}
+
+			&:last-child {
+				&::after {
+					content: '\201d';
+				}
+			}
+		}
+	}
+
+	&__source {
+		@include font-sans();
+		text-align: center;
+
+		&::before {
+			content: '';
+			display: block;
+			width: 30%;
+			margin: 1.5rem auto 1rem;
+			border-top: $border-hairline solid $clr-lighter-grey;
+
+			@include media($medium) {
+				width: 15%;
+			}
+		}
+	}
+
+	&__speaker {
+		display: block;
+		margin: 0 0 .5rem;
+		color: green;
+
+		font-size: rem($fs-fine-small);
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: .05em;
+
+		&__title {
+			@include font-serif(400, italic);
+
+			display: block;
+
+			color: $clr-ui-text;
+			
+			font-size: .8em;
+			text-transform: none;
+		}
+	}
+}

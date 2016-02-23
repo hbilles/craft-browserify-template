@@ -1,0 +1,95 @@
+// -------------------------------------------------------------------------
+// =blocks
+
+.block {
+	&__in {
+		@include outer-container;
+
+		margin: 0 1em;
+
+		@include media($medium) {
+			width: $width-medium;
+			margin: 0 auto;
+		}
+
+		@include media($large) {
+			width: $width-large;
+		}
+	}
+
+	// --------------------------
+	// =block__caption
+
+	&__caption {
+		@include media($medium) {
+			max-width: 66%;
+			text-align: left;
+		}
+
+		p {
+			@include media($medium) {
+				font-size: .9rem;
+				margin-top: .5em;
+			}
+
+			@include media($large) {
+				font-size: 1rem;
+			}
+		}
+	}
+
+	// --------------------------
+	// =block__text
+
+	&__text {
+		
+	}
+
+	// --------------------------
+	// =block__quote
+
+	&__quote {
+		
+	}
+
+	// --------------------------
+	// =block__video
+
+	&__video {
+		
+	}
+
+	// --------------------------
+	// =block__image
+
+	&__image {
+
+		.block__in {
+			position: relative;
+
+			img {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+	}
+
+	// --------------------------
+	// =block__slideshow
+
+	&__slideshow {
+
+	}
+
+	&__gallery {
+		margin: 0 0 2rem;
+	}
+
+	&__slide {
+		margin: 0 0 1.5rem;
+
+		.block__gallery.owl-carousel & {
+			margin: 0;
+		}
+	}
+}

@@ -48,9 +48,11 @@ p, li {
 		font-size: rem($fs-bump-medium);
 	}
 
+	/*
 	@include media($large) {
 		font-size: rem($fs-body-large);
 	}
+	*/
 }
 
 figure {
@@ -102,11 +104,13 @@ blockquote {
 			font-size: em($fs-bump-medium);
 		}
 
+		/*
 		@include media($large) {
 			padding: 0 7%;
 
 			font-size: em($fs-bump-large);
 		}
+		*/
 	}
 
 	.source {
