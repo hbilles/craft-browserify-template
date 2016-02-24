@@ -1,5 +1,11 @@
+{% set banded = banded|default(false) %}
+
 {% if entry.contentBlocks|length %}
-<section class="blocks {{ class|default('') }}">
+<section class="blocks{% if banded %} blocks--banded{% endif %} {{ class|default('') }}">
+{% if not banded %}
+	<div class="block__in">
+{% endif %}
+
 {% for block in entry.contentBlocks %}
 
 	{% switch block.type %}
@@ -7,46 +13,53 @@
 		{% case 'text' %}
 
 			<div class="block block__text">
-				<div class="block__in">{{ block.text | pd }}</div>
+				{% if banded %}<div class="block__in">{% endif %}
+				{{ block.text | pd }}
+				{% if banded %}</div>{% endif %}
 			</div>
 
 		{% case 'quote' %}
 
 			<div class="block block__quote">
-				<div class="block__in">
-					<blockquote class="quote">
-						<div class="quote__copy">{{ block.quote | md }}</div>
+				{% if banded %}<div class="block__in">{% endif %}
 
-						{% if block.speaker | length %}
-						<p class="quote__source">
-							<span class="quote__speaker">{{ block.speaker }}{% if block.speakerTitle %} <span class="quote__speaker__title">{{ block.speakerTitle }}</span>{% endif %}</span>
-						</p>
-						{% endif %}
-					</blockquote>
-				</div>
+				<blockquote class="quote">
+					<div class="quote__copy">{{ block.quote | md }}</div>
+
+					{% if block.speaker | length %}
+					<p class="quote__source">
+						<span class="quote__speaker">{{ block.speaker }}{% if block.speakerTitle %} <span class="quote__speaker__title">{{ block.speakerTitle }}</span>{% endif %}</span>
+					</p>
+					{% endif %}
+				</blockquote>
+
+				{% if banded %}</div>{% endif %}
 			</div>
 
 		{% case 'pullquote' %}
 
 			<div class="block block__pullquote">
-				<div class="block__in">
-					<blockquote class="pullquote">
-						{{ block.pullquote | pd }}
-					</blockquote>
-				</div>
+				{% if banded %}<div class="block__in">{% endif %}
+
+				<blockquote class="pullquote">
+					{{ block.pullquote | pd }}
+				</blockquote>
+
+				{% if banded %}</div>{% endif %}
 			</div>
 
 		{% case 'image' %}
 
-			<figure class="block block__image">
-				{% set imageSize = 'large' %}
-				{% if block.imagePosition == 'full' %}
-					{% set imageSize = 'xLarge' %}
-				{% endif %}
+			{% set imageSize = 'large' %}
+			{% if block.imagePosition == 'full' %}
+				{% set imageSize = 'xLarge' %}
+			{% endif %}
 
-				{% if block.imagePosition != 'full' %}<div class="block__in">{% endif %}
+			<figure class="block block__image{% if imageSize == 'xLarge' %} block__image--full{% endif %}">
+				{% if banded and imageSize == 'large' %}<div class="block__in">{% endif %}
+
 					{% for asset in block.image %}
-						<img src="{{ asset.getUrl(imageSize) }}" alt="">
+						<img src="{{ asset.getUrl(imageSize) }}" alt="{{ asset.caption }}">
 						
 						{% if block.caption %}
 							<figcaption class="block__caption">
@@ -57,8 +70,9 @@
 								{{ asset.caption | pd }}
 							</figcaption>
 						{% endif %}
-					{% endfor %}	
-				{% if block.imagePosition != 'full' %}</div>{% endif %}
+					{% endfor %}
+
+				{% if banded and imageSize == 'large' %}</div>{% endif %}
 			</figure>
 
 		{% case 'video' %}
@@ -66,21 +80,24 @@
 			{% set video = craft.embedder.url(block.video) %}
 
 			<figure class="block block__video">
-				<div class="block__in">
-					{{ video.embed_code }}
-					
-					{% if block.caption %}
-						<figcaption class="block__caption">
-							{{ block.caption | pd }}
-						</figcaption>
-					{% endif %}
-				</div>
+				{% if banded %}<div class="block__in">{% endif %}
+
+				{{ video.embed_code }}
+				
+				{% if block.caption %}
+					<figcaption class="block__caption">
+						{{ block.caption | pd }}
+					</figcaption>
+				{% endif %}
+				
+				{% if banded %}</div>{% endif %}
 			</figure>
 
 		{% case 'slideshow' %}
 
-			<div class="block__slideshow">
-				{% if block.showItems == '1' %}<div class="block__in">{% endif %}
+			<div class="block__slideshow{% if block.showItems != '1' %} block__slideshow--full{% endif %}">
+				{% if banded and block.showItems == '1' %}<div class="block__in">{% endif %}
+
 				<div class="block__gallery" data-showitems="{{ block.showItems }}">
 				{% for asset in block.images %}
 					<figure class="block__slide">
@@ -94,11 +111,16 @@
 					{{ block.caption | pd }}
 				</figcaption>
 				{% endif %}
-				{% if block.showItems == '1' %}</div>{% endif %}
+
+				{% if banded and block.showItems == '1' %}</div>{% endif %}
 			</div>
 
 	{% endswitch %}
 
 {% endfor %}
+
+{% if not banded %}
+	</div>{# /.block__in #}
+{% endif %}
 </section>
 {% endif %}
