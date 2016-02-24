@@ -11,6 +11,11 @@
       "browserify-shim"
     ]
   },
+  "scripts": {
+    "dbPullProduction": "./dbPullProduction.sh",
+    "dbPullStaging": "./dbPullStaging.sh",
+    "dbPushStaging": "./dbPushStaging.sh"
+  },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js",
     "lodash": "./node_modules/lodash",

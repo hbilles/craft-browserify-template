@@ -5,6 +5,7 @@ public/ui/build/*
 
 .sass-cache/*
 public/ui/.sass-cache/*
+_database/dump/*
 
 node_modules/*
 
