@@ -14,7 +14,7 @@
 
 			<div class="block block__text">
 				{% if banded %}<div class="block__in">{% endif %}
-				{{ block.text | pd }}
+				{{ block.text | md }}
 				{% if banded %}</div>{% endif %}
 			</div>
 
@@ -42,7 +42,7 @@
 				{% if banded %}<div class="block__in">{% endif %}
 
 				<blockquote class="pullquote">
-					{{ block.pullquote | pd }}
+					{{ block.pullquote | md }}
 				</blockquote>
 
 				{% if banded %}</div>{% endif %}
@@ -63,11 +63,11 @@
 						
 						{% if block.caption %}
 							<figcaption class="block__caption">
-								{{ block.caption | pd }}
+								{{ block.caption | md }}
 							</figcaption>
 						{% elseif asset.caption %}
 							<figcaption class="block__caption">
-								{{ asset.caption | pd }}
+								{{ asset.caption | md }}
 							</figcaption>
 						{% endif %}
 					{% endfor %}
@@ -86,7 +86,7 @@
 				
 				{% if block.caption %}
 					<figcaption class="block__caption">
-						{{ block.caption | pd }}
+						{{ block.caption | md }}
 					</figcaption>
 				{% endif %}
 				
@@ -108,7 +108,7 @@
 				
 				{% if block.caption %}
 				<figcaption class="block__caption">
-					{{ block.caption | pd }}
+					{{ block.caption | md }}
 				</figcaption>
 				{% endif %}
 
