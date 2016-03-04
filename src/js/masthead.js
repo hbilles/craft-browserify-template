@@ -2,7 +2,7 @@
 // Scroll behavior
 
 var $        = require('jquery'),
-	debounce = require('lodash/function/debounce');
+	debounce = require('lodash/debounce.js');
 
 
 var lastScrollTop = 0,

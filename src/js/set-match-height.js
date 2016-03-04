@@ -1,5 +1,5 @@
 var $            = require('jquery'),
-	_            = require('lodash/function.js'),
+	debounce     = require('lodash/debounce.js'),
 	imagesLoaded = require('imagesLoaded'),
 	matchHeight  = require('matchHeight');
 
@@ -12,7 +12,7 @@ if ($featuredNewsItems.length) {
 		setMatchHeight();
 	});
 
-	$(window).on('resize', _.debounce(setMatchHeight, 300));
+	$(window).on('resize', debounce(setMatchHeight, 300));
 }
 
 function setMatchHeight() {
