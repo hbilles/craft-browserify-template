@@ -43,16 +43,6 @@
         "jquery:window.jQuery"
       ]
     },
-    "matchHeight": {
-      "depends": [
-        "jquery:jQuery"
-      ]
-    },
-    "placeholder": {
-      "depends": [
-        "jquery:jQuery"
-      ]
-    },
     "validate": {
       "depends": [
         "jquery:jQuery"
