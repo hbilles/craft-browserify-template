@@ -39,7 +39,7 @@ gulp.task('clean', function(done) {
 gulp.task('sass', function() {
 	var minifycss = $.if(isProduction, $.minifyCss());
 
-	return gulp.src('src/scss/styles.scss')
+	return gulp.src(['src/scss/styles.scss','src/scss/offline.scss'])
 	.pipe($.sourcemaps.init())
 	.pipe($.sass({
 		includePaths: PATHS.sass
