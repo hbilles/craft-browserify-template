@@ -24,7 +24,7 @@ var PATHS = {
 		'node_modules/bourbon-neat/app/assets/stylesheets'
 	],
 	templates: [
-		'public/ui/templates/**/*.twig'
+		'src/templates/**/*.twig'
 	]
 };
 
@@ -37,7 +37,7 @@ gulp.task('clean', function(done) {
 // Compile Sass into CSS
 // In production, the CSS is compressed
 gulp.task('sass', function() {
-	var minifycss = $.if(isProduction, $.minifyCss());
+	var cleancss = $.if(isProduction, $.cleanCss());
 
 	return gulp.src(['src/scss/styles.scss','src/scss/offline.scss'])
 	.pipe($.sourcemaps.init())
@@ -48,7 +48,7 @@ gulp.task('sass', function() {
 	.pipe($.autoprefixer({
 		browsers: COMPATIBILITY
 	}))
-	.pipe(minifycss)
+	.pipe(cleancss)
 	.pipe($.if(!isProduction, $.sourcemaps.write()))
 	.pipe(gulp.dest('public/ui/build/css'));
 });
@@ -75,6 +75,11 @@ gulp.task('javascript', function() {
 		.pipe(gulp.dest('public/ui/build/js'));
 });
 
+gulp.task('twig', function() {
+	return gulp.src(PATHS.templates)
+		.pipe(gulp.dest('public/ui/build/templates'));
+});
+
 // Build the "build" folder by running all of the above tasks
 gulp.task('build', function(done) {
 	sequence('clean', ['sass', 'javascript'], done);
@@ -89,7 +94,7 @@ gulp.task('server', ['build'], function() {
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default', ['build', 'server'], function() {
-	gulp.watch(PATHS.templates, [browser.reload]);
+	gulp.watch(PATHS.templates, ['twig', browser.reload]);
 	gulp.watch(['src/scss/**/*.scss'], ['sass', browser.reload]);
 	gulp.watch(['src/js/**/*.js'], ['javascript', browser.reload]);
 });
