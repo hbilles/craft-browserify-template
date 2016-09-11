@@ -1,5 +1,6 @@
 var $          = require('gulp-load-plugins')(),
 	argv       = require('yargs').argv,
+	babelify   = require('babelify'),
 	browser    = require('browser-sync'),
 	browserify = require('browserify'),
 	buffer     = require('vinyl-buffer'),
