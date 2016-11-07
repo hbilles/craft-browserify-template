@@ -2,7 +2,7 @@
 // push events to Google Analytics
 
 
-module.exports = function(category, action, label) {
+export default function(category, action, label) {
 	// Test which version of Google Analytics is running and
 	// execute the appropriate tracking call.
 	if (typeof _gaq === 'function') {

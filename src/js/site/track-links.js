@@ -3,7 +3,7 @@
 // This setup tags where in the page clicked links reside,
 // whether in the #menu, #content, or #footer areas.
 
-var $ = require('jquery');
+import 'jquery'
 
 
 // Define Regular Expression pattern for phone and email links

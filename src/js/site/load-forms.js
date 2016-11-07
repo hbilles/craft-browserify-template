@@ -1,9 +1,9 @@
 // ---------------------------------------------------------------------
 // load forms from javascript templates
 
-var $             = require('jquery'),
-	setValidation = require('./set-validation'),
-	pushEvent     = require('./push-event');
+import 'jquery';
+import setValidation from './set-validation';
+import pushEvent from './push-event';
 
 
 var formTemplates  = document.querySelectorAll('script[data-type="form"]'),

@@ -1,24 +1,27 @@
 // ---------------------------------------------------------------------
 // set form validation...
 
-var $                  = require('jquery'),
-	validate           = require('validate'),
-	validateAdditional = require('validateAdditional');
+import 'jquery';
+import '../vendor/jquery.validate';
+import '../vendor/jquery.validate.additional';
 
 
-module.exports = function($input) {
+export default function($input) {
 
 	var inputRules = {},
 		inputMessages = {};
 
 	if ($input.data('validation-required')) {
 		inputMessages.required = $input.data('validation-required');
+		inputRules.required = true;
 		//console.log('Added a required rule.');
+	} else {
+		inputRules.required = false;
 	}
 
 	if ($input.data('validation-email')) {
 		inputRules.email = true;
-		inputMessages.email = $input.data('validation-required');
+		inputMessages.email = $input.data('validation-email');
 		//console.log('Added an email rule.');
 	}
 

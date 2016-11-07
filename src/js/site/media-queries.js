@@ -11,4 +11,4 @@ var mq = {
 
 }
 
-module.exports = mq;
+export default mq;

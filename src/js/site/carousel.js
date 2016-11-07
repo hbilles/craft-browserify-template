@@ -1,16 +1,16 @@
-var $            = require('jquery'),
-	imagesLoaded = require('imagesLoaded'),
-	owlCarousel  = require('owlCarousel'),
-	mq           = require('./media-queries');
+import 'jquery';
+import 'imagesloaded';
+import 'owl.carousel';
+import mq from './media-queries';
 
 
 if ( $(window).width() >= mq.px.medium ) {
 
-	var $galleries = $('.block__gallery');
+	var $galleries = $('.gallery');
 
 	$galleries.each(function() {
 		var $gallery  = $(this),
-			$caption  = $gallery.parent().find('.block__caption'),
+			$caption  = $gallery.parent().find('.caption'),
 			showItems = $gallery.data('showitems') || 1,
 			options   = {
 				margin:       16,

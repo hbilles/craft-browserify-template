@@ -1,8 +1,8 @@
 // ----------------------------------------------------------------------
 // responsive video
 
-var $       = require('jquery'),
-	fitVids = require('fitVids');
+import 'jquery';
+import '../vendor/jquery.fitVids';
 
 
 $('#site').fitVids();

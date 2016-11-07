@@ -1,23 +1,21 @@
 <?php
 /* PROJECT INFO --------------------------------------------------------------------------------------------------------
-   Version:   1.5.2
-   Changelog: http://adaptive-images.com/changelog.txt
-
-   Homepage:  http://adaptive-images.com
-   GitHub:    https://github.com/MattWilcox/Adaptive-Images
-   Twitter:   @responsiveimg
-
-   LEGAL:
-   Adaptive Images by Matt Wilcox is licensed under a Creative Commons Attribution 3.0 Unported License.
+                Homepage: http://adaptive-images.com
+                GitHub:   https://github.com/MattWilcox/Adaptive-Images
+                Twitter:  @responsiveimg
+                
+                LEGAL:
+                Adaptive Images by Matt Wilcox is licensed under a Creative Commons Attribution 3.0 Unported License.
 
 /* CONFIG ----------------------------------------------------------------------------------------------------------- */
 
-$resolutions   = array(1280, 1024, 768, 480); // the resolution break-points to use (screen widths, in pixels)
-$cache_path    = "images/cache"; // where to store the generated re-sized images. Specify from your document root!
-$jpg_quality   = 75; // the quality of any generated JPGs on a scale of 0 to 100
+$resolutions   = array(2000, 1280, 1024, 800, 480); // the resolution break-points to use (screen widths, in pixels)
+$cache_path    = "images/cache"; // where to store the generated re-sized images. This folder must be writable.
+$jpg_quality   = 80; // the quality of any generated JPGs on a scale of 0 to 100
 $sharpen       = TRUE; // Shrinking images can blur details, perform a sharpen on re-scaled images?
-$watch_cache   = TRUE; // check that the adapted image isn't stale (ensures updated source images are re-cached)
+$watch_cache   = TRUE; // check that the responsive image isn't stale (ensures updated source images are re-cached)
 $browser_cache = 60*60*24*7; // How long the BROWSER cache should last (seconds, minutes, hours, days. 7days by default)
+$mobile_first  = TRUE; // If there's no cookie sends the mobile version (if FALSE, sends largest $resolutions version)
 
 /* END CONFIG ----------------------------------------------------------------------------------------------------------
 ------------------------ Don't edit anything after this line unless you know what you're doing -------------------------
@@ -25,34 +23,10 @@ $browser_cache = 60*60*24*7; // How long the BROWSER cache should last (seconds,
 
 /* get all of the required data from the HTTP request */
 $document_root  = $_SERVER['DOCUMENT_ROOT'];
-$requested_uri  = parse_url(urldecode($_SERVER['REQUEST_URI']), PHP_URL_PATH);
+$requested_uri  = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $requested_file = basename($requested_uri);
 $source_file    = $document_root.$requested_uri;
 $resolution     = FALSE;
-
-/* Mobile detection 
-   NOTE: only used in the event a cookie isn't available. */
-function is_mobile() {
-  $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
-  return strpos($userAgent, 'mobile');
-}
-
-/* Does the UA string indicate this is a mobile? */
-if(!is_mobile()){
-  $is_mobile = FALSE;
-} else {
-  $is_mobile = TRUE;
-}
-
-// does the $cache_path directory exist already?
-if (!is_dir("$document_root/$cache_path")) { // no
-  if (!mkdir("$document_root/$cache_path", 0755, true)) { // so make it
-    if (!is_dir("$document_root/$cache_path")) { // check again to protect against race conditions
-      // uh-oh, failed to make that directory
-      sendErrorImage("Failed to create cache directory at: $document_root/$cache_path");
-    }
-  }
-}
 
 /* helper function: Send headers and returns an image. */
 function sendImage($filename, $browser_cache) {
@@ -62,7 +36,7 @@ function sendImage($filename, $browser_cache) {
   } else {
     header("Content-Type: image/jpeg");
   }
-  header("Cache-Control: private, max-age=".$browser_cache);
+  header("Cache-Control: public, max-age=".$browser_cache);
   header('Expires: '.gmdate('D, d M Y H:i:s', time()+$browser_cache).' GMT');
   header('Content-Length: '.filesize($filename));
   readfile($filename);
@@ -71,33 +45,10 @@ function sendImage($filename, $browser_cache) {
 
 /* helper function: Create and send an image with an error message. */
 function sendErrorImage($message) {
-  /* get all of the required data from the HTTP request */
-  $document_root  = $_SERVER['DOCUMENT_ROOT'];
-  $requested_uri  = parse_url(urldecode($_SERVER['REQUEST_URI']), PHP_URL_PATH);
-  $requested_file = basename($requested_uri);
-  $source_file    = $document_root.$requested_uri;
-
-  if(!is_mobile()){
-    $is_mobile = "FALSE";
-  } else {
-    $is_mobile = "TRUE";
-  }
-
-  $im            = ImageCreateTrueColor(800, 300);
-  $text_color    = ImageColorAllocate($im, 233, 14, 91);
-  $message_color = ImageColorAllocate($im, 91, 112, 233);
-
-  ImageString($im, 5, 5, 5, "Adaptive Images encountered a problem:", $text_color);
-  ImageString($im, 3, 5, 25, $message, $message_color);
-
-  ImageString($im, 5, 5, 85, "Potentially useful information:", $text_color);
-  ImageString($im, 3, 5, 105, "DOCUMENT ROOT IS: $document_root", $text_color);
-  ImageString($im, 3, 5, 125, "REQUESTED URI WAS: $requested_uri", $text_color);
-  ImageString($im, 3, 5, 145, "REQUESTED FILE WAS: $requested_file", $text_color);
-  ImageString($im, 3, 5, 165, "SOURCE FILE IS: $source_file", $text_color);
-  ImageString($im, 3, 5, 185, "DEVICE IS MOBILE? $is_mobile", $text_color);
-
-  header("Cache-Control: no-store");
+  $im         = ImageCreateTrueColor(800, 200);
+  $text_color = ImageColorAllocate($im, 233, 14, 91);
+  ImageString($im, 1, 5, 5, $message, $text_color);
+  header("Cache-Control: no-cache");
   header('Expires: '.gmdate('D, d M Y H:i:s', time()-1000).' GMT');
   header('Content-Type: image/jpeg');
   ImageJpeg($im);
@@ -113,6 +64,38 @@ function findSharp($intOrig, $intFinal) {
   $intC     = .00047337278106508946;
   $intRes   = $intA + $intB * $intFinal + $intC * $intFinal * $intFinal;
   return max(round($intRes), 0);
+}
+
+/* Browser engine detect 
+   NOTE: only required to work around a bug where some browsers can't set the cookie fast enough on the first visit to the
+         website. Such browsers therefor act as though no cookie was set on the very first visit. This means we can't
+         allow them to have $mobile_first set to TRUE, or else they get the mobile version on the first load of the site */
+function browser_detect(){
+  $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
+
+  // Identify the browser engine. Check Opera and Safari first in case of spoof. Let Google Chrome be identified as Safari.
+  if (preg_match('/opera/', $userAgent)) {
+    $name = 'opera'; }
+  elseif (preg_match('/webkit/', $userAgent)) {
+    $name = 'webkit'; }
+  elseif (preg_match('/msie/', $userAgent)) {
+    $name = 'msie'; }
+  elseif (preg_match('/mozilla/', $userAgent) && !preg_match('/compatible/', $userAgent)) {
+    $name = 'gecko'; }
+  else { $name = 'unrecognized'; }
+
+  // What version?
+  if (preg_match('/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/', $userAgent, $matches)) {
+    $version = $matches[1]; }
+  else {
+    $version = 'unknown'; }
+
+  return $name;
+}
+
+/* Do we need to switch mobile first off? */
+if(browser_detect() == "gecko"){
+  $mobile_first = FALSE;
 }
 
 /* refreshes the cached image if it's outdated */
@@ -149,7 +132,6 @@ function generateImage($source_file, $cache_file, $resolution) {
   $ratio      = $height/$width;
   $new_width  = $resolution;
   $new_height = ceil($new_width * $ratio);
-  $dst        = ImageCreateTrueColor($new_width, $new_height); // re-sized image
 
   switch ($extension) {
     case 'png':
@@ -160,28 +142,27 @@ function generateImage($source_file, $cache_file, $resolution) {
     break;
     default:
       $src = @ImageCreateFromJpeg($source_file); // original image
-      ImageInterlace($dst, true); // Enable interlancing (progressive JPG, smaller size file)
     break;
   }
 
-  if($extension=='png'){
-    imagealphablending($dst, false);
-    imagesavealpha($dst,true);
-    $transparent = imagecolorallocatealpha($dst, 255, 255, 255, 127);
-    imagefilledrectangle($dst, 0, 0, $new_width, $new_height, $transparent);
-  }
-  
+	$dst = ImageCreateTrueColor($new_width, $new_height); // re-sized image
+
+	if($extension=='png'){
+		imagealphablending($dst, false);
+		imagesavealpha($dst,true);
+		$transparent = imagecolorallocatealpha($dst, 255, 255, 255, 127);
+		imagefilledrectangle($dst, 0, 0, $new_width, $new_height, $transparent);
+	}
   ImageCopyResampled($dst, $src, 0, 0, 0, 0, $new_width, $new_height, $width, $height); // do the resize in memory
   ImageDestroy($src);
 
   // sharpen the image?
-  // NOTE: requires PHP compiled with the bundled version of GD (see http://php.net/manual/en/function.imageconvolution.php)
-  if($sharpen == TRUE && function_exists('imageconvolution')) {
+  if ($sharpen == TRUE) {
     $intSharpness = findSharp($width, $new_width);
     $arrMatrix = array(
-      array(-1, -2, -1),
-      array(-2, $intSharpness + 12, -2),
-      array(-1, -2, -1)
+        array(-1, -2, -1),
+        array(-2, $intSharpness + 12, -2),
+        array(-1, -2, -1)
     );
     imageconvolution($dst, $arrMatrix, $intSharpness, 0);
   }
@@ -190,12 +171,12 @@ function generateImage($source_file, $cache_file, $resolution) {
 
   // does the directory exist already?
   if (!is_dir($cache_dir)) { 
-    if (!mkdir($cache_dir, 0755, true)) {
+    if (!mkdir($cache_dir, 0777, true)) {
       // check again if it really doesn't exist to protect against race conditions
       if (!is_dir($cache_dir)) {
         // uh-oh, failed to make that directory
         ImageDestroy($dst);
-        sendErrorImage("Failed to create cache directory: $cache_dir");
+        sendErrorImage("Failed to create directory: $cache_dir");
       }
     }
   }
@@ -242,70 +223,29 @@ if (!extension_loaded('gd')) { // it's not loaded
 
 /* Check to see if a valid cookie exists */
 if (isset($_COOKIE['resolution'])) {
-  $cookie_value = $_COOKIE['resolution'];
+  if (is_numeric($_COOKIE['resolution'])) {
+    $client_width = (int) $_COOKIE["resolution"]; // store the cookie value in a variable
 
-  // does the cookie look valid? [whole number, comma, potential floating number]
-  if (! preg_match("/^[0-9]+[,]*[0-9\.]+$/", "$cookie_value")) { // no it doesn't look valid
-    setcookie("resolution", "$cookie_value", time()-100); // delete the mangled cookie
-  }
-  else { // the cookie is valid, do stuff with it
-    $cookie_data   = explode(",", $_COOKIE['resolution']);
-    $client_width  = (int) $cookie_data[0]; // the base resolution (CSS pixels)
-    $total_width   = $client_width;
-    $pixel_density = 1; // set a default, used for non-retina style JS snippet
-    if (@$cookie_data[1]) { // the device's pixel density factor (physical pixels per CSS pixel)
-      $pixel_density = $cookie_data[1];
-    }
-
+    /* the client width in the cookie is valid, now fit that number into the correct resolution break point */
     rsort($resolutions); // make sure the supplied break-points are in reverse size order
-    $resolution = $resolutions[0]; // by default use the largest supported break-point
+    $resolution = $resolutions[0]; // by default it's the largest supported break-point
 
-    // if pixel density is not 1, then we need to be smart about adapting and fitting into the defined breakpoints
-    if($pixel_density != 1) {
-      $total_width = $client_width * $pixel_density; // required physical pixel width of the image
-
-      // the required image width is bigger than any existing value in $resolutions
-      if($total_width > $resolutions[0]){
-        // firstly, fit the CSS size into a break point ignoring the multiplier
-        foreach ($resolutions as $break_point) { // filter down
-          if ($total_width <= $break_point) {
-            $resolution = $break_point;
-          }
-        }
-        // now apply the multiplier
-        $resolution = $resolution * $pixel_density;
-      }
-      // the required image fits into the existing breakpoints in $resolutions
-      else {
-        foreach ($resolutions as $break_point) { // filter down
-          if ($total_width <= $break_point) {
-            $resolution = $break_point;
-          }
-        }
+    foreach ($resolutions as $break_point) { // filter down
+      if ($client_width <= $break_point) {
+        $resolution = $break_point;
       }
     }
-    else { // pixel density is 1, just fit it into one of the breakpoints
-      foreach ($resolutions as $break_point) { // filter down
-        if ($total_width <= $break_point) {
-          $resolution = $break_point;
-        }
-      }
-    }
+  } else {
+    setcookie("resolution", "", time() -1); // delete the mangled cookie
   }
 }
 
 /* No resolution was found (no cookie or invalid cookie) */
 if (!$resolution) {
   // We send the lowest resolution for mobile-first approach, and highest otherwise
-  $resolution = $is_mobile ? min($resolutions) : max($resolutions);
+  $resolution = $mobile_first ? min($resolutions) : max($resolutions);
 }
 
-/* if the requested URL starts with a slash, remove the slash */
-if(substr($requested_uri, 0,1) == "/") {
-  $requested_uri = substr($requested_uri, 1);
-}
-
-/* whew might the cache file be? */
 $cache_file = $document_root."/$cache_path/$resolution/".$requested_uri;
 
 /* Use the resolution value as a path variable and check to see if an image of the same name exists at that path */
@@ -317,6 +257,6 @@ if (file_exists($cache_file)) { // it exists cached at that size
   sendImage($cache_file, $browser_cache);
 }
 
-/* It exists as a source file, and it doesn't exist cached - lets make one: */
+/* It exists as a source file, so lets work with that: */
 $file = generateImage($source_file, $cache_file, $resolution);
 sendImage($file, $browser_cache);
