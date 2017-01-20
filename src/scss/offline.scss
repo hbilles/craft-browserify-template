@@ -1,6 +1,6 @@
-@import "bourbon";
+@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
 @import "config/grid-settings.scss";
-@import "neat";
+@import "../../node_modules/bourbon-neat/app/assets/stylesheets/neat";
 
 @import "config/webfonts.scss";
 @import "config/colors.scss";
