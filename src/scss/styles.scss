@@ -1,6 +1,8 @@
 @import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
 @import "config/grid-settings.scss";
 @import "../../node_modules/bourbon-neat/app/assets/stylesheets/neat";
+@import "vendor/modular-scale";
+@import "../../node_modules/typi/scss/typi";
 
 @import "config/webfonts.scss";
 @import "config/colors.scss";
@@ -9,14 +11,18 @@
 @import "config/misc-variables.scss";
 @import "config/utility.scss";
 
-@import "base/forms.scss";
 @import "base/general.scss";
 @import "base/headings.scss";
 @import "base/links.scss";
 
+@import "components/button.sass";
+@import "components/form.sass";
+@import "components/loader.sass";
+@import "components/notice.sass";
+@import "components/video.sass";
+
 @import "modules/site.scss";
-@import "modules/chosen.scss";
-@import "modules/waves.scss";
+@import "modules/icon.scss";
 @import "modules/global.scss";
 @import "modules/owl-carousel.scss";
 @import "modules/owl-theme.scss";

@@ -1,0 +1,52 @@
+// --------------------------------------------------------------------------
+// =typi settings
+
+$breakpoints: (
+	medium: 41em, // 41em
+	large: 61em // 61em
+);
+
+$typi: (
+	null: (14px, 1.5),
+	medium: 16px
+);
+
+$typi-ms: (
+	null: 1.2,
+	// medium: 1.333
+);
+
+$h1-map: (
+	null: 4,
+	medium: 4,
+);
+
+$h2-map: (
+	null: 3,
+	medium: 3,
+);
+
+$h3-map: (
+	null: 2,
+	medium: 2,
+);
+
+$h4-map: (
+	null: 1,
+	medium: 1,
+);
+
+$h5-map: (
+	null: 0,
+	medium: 0,
+);
+
+$small-map: (
+	null: -1,
+	medium: -1
+);
+
+$xsmall-map: (
+	null: -2,
+	medium: -2
+);

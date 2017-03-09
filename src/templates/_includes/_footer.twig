@@ -1,45 +1,53 @@
-<footer class="footer" id="meta" itemscope itemtype="http://schema.org/WPFooter">
+{% set contact = craft.entries.section('contact').first() %}
+
+<footer class="footer footer--meta" itemscope itemtype="http://schema.org/WPFooter">
 	<div class="footer__in">
 		{% spaceless %}
-		<div class="footer__about">
-			<h3 class="footer__heading">{{ footer.heading }}</h3>
-			{{ footer.copy | md }}
+		<div class="footer__primary">
+			<div class="footer__about">
+				<h3 class="footer__heading">{{ footer.heading }}</h3>
+				{{ footer.copy | md }}
+			</div>
+
+			<div class="footer__contact">
+				<h3 class="footer__heading">{{ contact.title }}</h3>
+				{% include '_includes/_address' with { location: contact, rootClass: 'footer__contact' } %}
+				<div class="footer__contact__methods">
+					{% if contact.phoneNumber %}{% include '_includes/_phone' with { number: contact.phoneNumber, rootClass: 'footer__contact' } %}{% endif %}
+					{% set emailLink = '<a href="mailto:' ~ contact.emailAddress ~ '">' ~ contact.emailAddress ~ '</a>' %}
+					<p class="footer__contact__email">
+						{{ emailLink | rot13 }}
+					</p>
+				</div>
+			</div>
 		</div>
 
 		<nav class="footer__nav">
-			<ul>
-				
+		{% set columnsSplit = false %}
+		{% for link in footer.links %}
+			{% if loop.first %}
+			<ul class="footer__nav__col-1">
+			{% endif %}
 				<li>
-					<a href="/#link1" title="">Link 1</a>
+					<a href="{{ link.url }}" title="">{{ link.text }}</a>
 				</li>
-
-				<li>
-					<a href="/#link2" title="">Link 2</a>
-				</li>
-
-				<li>
-					<a href="/#link3" title="">Link 3</a>
-				</li>				
+			{% if loop.length > 2 and loop.index >= (loop.length / 2) and columnsSplit == false %}
+				</ul>
+				<ul class="footer__nav__col-2">
+				{% set columnsSplit = true %}
+			{% endif %}
+			{% if loop.last %}
 			</ul>
-		</nav>
-
-		<div class="footer__contact">
-		{% for contact in craft.entries.section('contact') %}
-			<span class="footer__contact-link"><a href="{{ contact.url }}" title="{{ contact.summary }}">{{ contact.title }}</a></span>
-			{#
-			{% if contact.phone %}{% include '_includes/_phone' with { number: contact.phone, label: 'Phone' } %}{% endif %}
-			{% if contact.fax %}{% include '_includes/_phone' with { number: contact.fax, label: 'Fax' } %}{% endif %}
-			{% include '_includes/_address' with { location: contact } %}
-			{% include '_includes/_socialMediaLinks' with { entry: contact } %}
-			#}
+			{% endif %}
 		{% endfor %}
-		</div>
+		</nav>
 		{% endspaceless %}
 	</div>
 </footer>
 
-<footer class="footer" id="fineprint">
+<footer class="footer footer--fineprint">
 	<div class="footer__in">
+		{% include '_includes/_socialMediaLinks' with { entry: contact } %}
 		<p class="copyright"><span>Copyright &copy; {{ now.format('Y') }} {{ siteName }}.</span> <span>All Rights Reserved.</span></p>
 		<p class="credits"><a href="http://line58.com" title="Visit the Line 58 website"{% if craft.request.segment(1) %} rel="nofollow"{% endif %}><span>Web Design by</span> <span>Line 58 Branding &amp; Web Design</span></a></p>
 	</div>

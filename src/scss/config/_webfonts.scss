@@ -1,7 +1,8 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,300,300italic);
 @include font-face(WebSymbols, '/ui/webfonts/WebSymbols');
 
-@mixin font-sans($weight: 400, $style: normal) {
-	font-family: helvetica, arial, sans-serif;
+@mixin font-sans($weight: 300, $style: normal) {
+	font-family: 'Source Sans Pro', helvetica, arial, sans-serif;
 	font-weight: $weight;
 	font-style: $style;
 }

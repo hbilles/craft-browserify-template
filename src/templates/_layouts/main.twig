@@ -8,16 +8,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>{% if metaTitle is defined %}{{ metaTitle }} {{ craft.config.titleBullet }} {% endif %}{{ siteName }}{% if homeTitle is defined %} {{ craft.config.titleBullet }} {{ homeTitle }}{% endif %}</title>
-	{% if metaDescription is defined %}<meta name="description" content="{{ metaDescription }}">{% endif %}
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<meta name="author" content="{{ siteName }}">
 
-	{% include '_includes/_favicons' %}
+	{% hook 'seomaticRender' %}
+
+	{# {% include '_includes/_favicons' %} #}
 
 	{% if canonicalUrl is defined %}<link rel="canonical" href="{{ canonicalUrl }}">{% endif %}
+	{% if noIndex is defined %}<meta name="robots" content="noindex">{% endif %}
 
-	{#{% include '_includes/_socialMediaHead' %}#}
 	{% include '_includes/_stylesheets' %}
 	{% include '_includes/_scriptsHead' %}
 </head>
@@ -25,41 +24,24 @@
 <body itemscope itemtype="http://schema.org/{% if pageSchema is defined %}{{ pageSchema }}{% else %}WebPage{% endif %}">
 <script>
 	var bdy = document.getElementsByTagName('body');
-	bdy[0].className = 'js';
+	bdy[0].classList.add('js');
+
+	var touchClass = 'ontouchstart' in document.documentElement ? 'can-touch' : 'non-touch';
+	bdy[0].classList.add(touchClass);
 </script>
 
 <div id="top"></div>
 
 <div id="site"{% if pageClass is defined %} class="{{ pageClass }}"{% endif %}>
 
-		<header id="site-header">
-			<div class="sticky-nav-container">
-				<nav class="top-nav">
-					<div class="top-nav__in">
-						<div class="top-nav__logo">
-							<a class="site-logo" href="{{ siteUrl }}" title="{{ craft.config.homeLinkTitle }}">
-								<img src="/assets/img/logo.png" alt="{{ siteName }}">
-							</a>
-						</div>
-						<div class="nav-toggle">
-							<span id="nav-toggle">
-								<span class="nav-toggle__label">NAV</span>
-								<span class="nav-toggle__bars"></span>
-							</span>
-						</div>
-						{% include '_includes/_nav' with { class: 'fixed-menu' } %}
-						{% include '_includes/_nav' with { class: 'mobile-menu' } %}
-					</div>
-				</nav>
-				<nav class="logo-nav">
-					<div class="logo-nav__in">
-						<a class="site-logo" href="{{ siteUrl }}" title="{{ craft.config.homeLinkTitle }}">
-							<img src="/assets/img/logo.png" alt="{{ siteName }}">
-						</a>
+		<header id="masthead" class="masthead" itemscope itemtype="http://schema.org/WPHeader">
+			<div class="masthead__in">
+				<a id="logo" href="{{ siteUrl }}" title="Back to {{ siteName }} homepage">
+					{# <svg class="svg-logo"><use xlink:href="#svg-logo"></use></svg> #}
+					<img class="logo" src="{{ url('assets/img/logo.png') }}" alt="{{ siteName }}">
+				</a>
 
-						{% include '_includes/_nav' with { class: 'desktop-menu' } %}
-					</div>
-				</nav>
+				{% include '_includes/_menu' with { id: 'masthead__menu', class: 'masthead__menu' } %}
 			</div>
 		</header>
 	

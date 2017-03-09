@@ -19,19 +19,11 @@
 }
 
 .section__in {
-	@include outer-container;
-
 	margin: 0 1em;
-	padding: 2em 0;
+	padding: 1px 0;
 
 	@include media($medium) {
-		width: $width-medium;
-		margin: 0 auto;
-		padding: 3em 0;
-	}
-
-	@include media($large) {
-		width: $width-large;
+		margin: 0 2em;
 	}
 
 	& > *:first-child {
@@ -74,18 +66,9 @@
 }
 
 .section__summary {
-	text-align: center;
 
 	p,
 	li {
-		font-size: rem($fs-summary-small);
-
-		@include media($medium) {
-			font-size: rem($fs-summary-medium);
-		}
-
-		@include media($large) {
-			font-size: rem($fs-summary-large);
-		}
+		@include typi($h4-map);
 	}
 }

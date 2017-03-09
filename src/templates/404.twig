@@ -1,10 +1,12 @@
 {% extends "_layouts/main" %}
-{% set metaTitle = "404" %}
+
+{% set title = error404.heading %}
+{% set seomaticMeta = seomaticMeta | merge({'seoTitle': title}) %}
 
 {% block content %}
 <section class="section">
 	<div class="section__in">
-		<h1>{{ error404.heading }}</h1>
+		<h1>{{ title }}</h1>
 	
 		{{ error404.copy | md }}
 	</div>

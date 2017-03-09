@@ -2,6 +2,8 @@
 // html
 
 html {
+	@include typi-base();
+
 	box-sizing: border-box;
 }
 
@@ -25,11 +27,11 @@ body {
 // content
 
 p {
-	margin: 0 0 1.7em;
+	margin: 0 0 vr(1);
 }
 
 ul {
-	margin: 0 0 1.7em;
+	margin: 0 0 vr(1);
 
 	ul {
 		margin: 0;
@@ -37,26 +39,11 @@ ul {
 }
 
 li {
-	margin: 0 0 .85em;
-}
-
-p, li {
-	font-size: rem($fs-bump-small);
-	line-height: 1.5;
-
-	@include media($medium) {
-		font-size: rem($fs-bump-medium);
-	}
-
-	/*
-	@include media($large) {
-		font-size: rem($fs-body-large);
-	}
-	*/
+	margin: 0 0 vr(.5);
 }
 
 figure {
-	margin: 0 0 1.7em;
+	margin: 0 0 vr(1);
 	
 	img {
 		width: 100%;
@@ -64,16 +51,13 @@ figure {
 }
 
 figcaption {
-	margin: .5rem 0 0;
+	@include typi($small-map);
+
+	margin: vr(.5) 0 0;
 
 	color: $clr-medium-grey;	
 	
-	font-size: rem($fs-fine-small);
 	text-align: center;
-
-	@include media($medium) {
-		font-size: rem($fs-fine-large)
-	}
 
 	p {
 		margin: 0;
@@ -85,43 +69,28 @@ figcaption {
 blockquote {
 	@include font-serif(400, italic);
 
-	margin: 2em 0;
-	padding: 1.5em 0 .25em;
+	margin: vr(2) 0;
+	padding: vr(1) 0 vr(.5);
 	quotes: '“' '”' '‘' '’';
 
 	text-align: center;
 
 	p {
-		margin: 0 0 1em;
+		@include typi($h4-map);
+
+		margin: 0 0 vr(1);
 		padding: 0 7%;
 		
-		font-size: rem($fs-bump-small);
-		line-height: 1.6;
-
 		@include media($medium) {
 			padding: 0 5%;
-
-			font-size: em($fs-bump-medium);
 		}
-
-		/*
-		@include media($large) {
-			padding: 0 7%;
-
-			font-size: em($fs-bump-large);
-		}
-		*/
 	}
 
 	.source {
+		@include typi($small-map);
 		@include font-sans();
 		
-		font-size: em($fs-fine-small);
 		font-style: normal;
-
-		@include media($medium) {
-			font-size: em($fs-body-small);
-		}
 	}
 
 	.author {

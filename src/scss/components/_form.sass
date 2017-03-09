@@ -1,0 +1,113 @@
+// --------------------------------------------------------------------------
+// =form
+
+.form
+
+	&__group
+		margin: 0 0 1em
+
+	&__opt-in
+		position: relative
+		margin: 0 0 1em
+
+		label
+			display: inline-block
+			width: calc(100% - 2em)
+			vertical-align: top
+			margin-left: .5em
+
+			font-weight: normal
+
+	&__note
+		font-size: em($fs-body-small)
+
+label
+	display: block
+	margin: 0 0 .5em
+
+	line-height: 1
+
+.form__label
+	&--inline
+		display: inline-block
+		vertical-align: middle
+
+	&--help
+		margin: 0 0 0 .5em
+		
+		font-size: inherit
+		font-weight: normal
+
+	&--error
+		margin: .5em 0 0
+		
+		color: $clr-ui-warning
+		
+		text-transform: none
+		font-weight: normal
+
+	&--small
+		font-size: em($fs-fine-small)
+
+input[type='amount'],
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+textarea,
+select
+	appearance: none
+	width: 100%
+	max-width: 30em
+	padding: .5em
+	border: 1px solid $clr-lighter-grey
+	border-radius: 0
+
+	line-height: 1.4
+
+	color: $clr-dark-grey
+	background-color: transparent
+
+	&.form__input
+		&--solid
+			background-color: $clr-white
+
+input[type='amount'],
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url']
+	&[readonly]
+		border: none
+		padding: 0
+
+input[type='checkbox'],
+input[type='radio']
+	display: inline
+
+input.error,
+textarea.error,
+select.error
+	border: 1px solid $clr-ui-warning
+
+	color: $clr-ui-warning
+	background-color: pink
+
+select
+	border-radius: 0
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="#d1d1d1" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>') center right no-repeat
+	padding-right: 1.875rem
+
+	&:focus
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="#9b4dca" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>')
+
+// honeypot field
+.yourcomments
+	display: none
+

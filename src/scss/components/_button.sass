@@ -1,0 +1,85 @@
+// -------------------------------------------------------------------------
+// =button
+// inspired by milligram framework: https://milligram.github.io/
+
+button,
+.button,
+input[type='button'],
+input[type='reset'],
+input[type='submit']
+	@include transition(all 0.2s ease-in-out)
+
+	background-color: $clr-ui-link
+	border: .1rem solid $clr-ui-link
+	border-radius: .4rem
+	color: $clr-ui-link-contrast
+	cursor: pointer
+	display: inline-block
+	font-size: .875rem
+	// font-weight: 700
+	letter-spacing: .1em
+	line-height: 2.5714em
+	padding: 0 2em
+	text-align: center
+	text-decoration: none
+	// text-transform: uppercase
+	white-space: nowrap
+
+	&:focus,
+	&:hover
+		background-color: $clr-ui-link-hover
+		border-color: $clr-ui-link-hover
+		color: $clr-ui-link-hover-contrast
+		outline: 0
+
+	&[disabled]
+		cursor: default
+		opacity: .5
+
+		&:focus,
+		&:hover
+			background-color: $clr-ui-link
+			border-color: $clr-ui-link
+
+	&.button--outline
+		background-color: transparent
+		color: $clr-ui-link
+
+		&:focus,
+		&:hover
+			background-color: $clr-ui-link
+			border-color: $clr-ui-link
+			color: $clr-ui-link-contrast
+
+		&[disabled]
+
+			&:focus,
+			&:hover
+				border-color: inherit
+				color: $clr-ui-link-contrast
+
+	&.button--outline-contrast
+		background-color: transparent
+		border-color: $clr-ui-link-contrast
+		color: $clr-ui-link-contrast
+
+		&:focus,
+		&:hover
+			background-color: $clr-ui-link-contrast
+			border-color: $clr-ui-link-contrast
+			color: $clr-ui-link-contrast-secondary
+
+	&.button--xlarge
+		font-size: 1.125rem
+
+	&.button--large
+		font-size: 1rem
+
+	&.button--small
+		font-size: .75rem
+		text-transform: uppercase
+
+	&.button--xsmall
+		font-size: .625rem
+		font-weight: 700
+		text-transform: uppercase

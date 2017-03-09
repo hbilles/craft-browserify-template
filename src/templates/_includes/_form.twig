@@ -1,7 +1,7 @@
 {% set form = craft.perform.getForm(form) %}
 {% set hiddenValue = hiddenValue|default('') %}
 
-<script type="text/template" data-type="form" data-enctype="multipart/form-data">
+<script type="text/template" data-type="form" data-class="form" data-enctype="multipart/form-data">
 	{{ getCsrfInput() }}
 	<input type="hidden" name="action" value="perform/submissions/postSubmission">
 	<input type="hidden" name="redirect" value="{% if form.successRedirect %}{{ form.successRedirect }}{% else %}{{ craft.request.url }}?success=1{% endif %}">
@@ -10,17 +10,16 @@
 	<div class="questions">
 		<h2>{{ formTitle|default(form.name) }}</h2>
 
-		<fieldset>
 
 			{% if craft.request.getQuery('success') %}
-				<div class="message success">
+				<div class="notice notice--success">
 					<h3>Message Sent</h3>
 					<p>Thanks for your inquiry!</p>
 				</div>
 			{% endif %}
 
 			{% if submission is defined and submission.getAllErrors() | length %}
-				<div class="message error">
+				<div class="notice notice--error">
 					<h3>Please correct the following errors</h3>
 					{% for error in submission.getAllErrors() %}
 						<li>{{ error }}</li>
@@ -34,7 +33,7 @@
 				{% switch question.type %}
 
 					{% case 'PlainText' %}
-						<div class="question input-plain-text hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-plain-text hide-label{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="text"
@@ -52,7 +51,7 @@
 
 
 					{% case 'MultilineText' %}
-						<div class="question textarea hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group textarea hide-label{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<textarea
@@ -70,7 +69,7 @@
 
 
 					{% case 'Dropdown' %}
-						<div class="question select{% if question.required %} required{% endif %}">
+						<div class="form__group select{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 	
 							<select
@@ -95,7 +94,7 @@
 
 
 					{% case 'RadioButtons' %}
-						<ul class="question input-radio-buttons{% if question.required %} required{% endif %}">
+						<ul class="form__group input-radio-buttons{% if question.required %} required{% endif %}">
 							{% for option in question.options %}
 								<li>
 									{% set selected = submission is defined and submission[question.handle]
@@ -113,7 +112,7 @@
 
 
 					{% case 'Checkboxes' %}
-						<ul class="question input-checkboxes{% if question.required %} required{% endif %}">
+						<ul class="form__group input-checkboxes{% if question.required %} required{% endif %}">
 							{% for option in question.options %}
 								<li>
 									{% set selected = submission is defined and submission[question.handle]
@@ -133,7 +132,7 @@
 						</ul>
 
 					{% case 'DropdownEmailRouter' %}
-						<div class="question select{% if question.required %} required{% endif %}">
+						<div class="form__group select{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 	
 							<select
@@ -157,7 +156,7 @@
 						</div>
 
 					{% case 'RadioButtonsEmailRouter' %}
-						<ul class="question input-radio-buttons{% if question.required %} required{% endif %}">
+						<ul class="form__group input-radio-buttons{% if question.required %} required{% endif %}">
 							{% for option in question.options %}
 								<li>
 									{% set selected = submission is defined and submission[question.handle]
@@ -175,7 +174,7 @@
 
 
 					{% case 'Number' %}
-						<div class="question input-number hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-number hide-label{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="number"
@@ -193,7 +192,7 @@
 
 
 					{% case 'Email' %}
-						<div class="question input-email hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-email hide-label{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="email"
@@ -211,7 +210,7 @@
 
 
 					{% case 'Tel' %}
-						<div class="question input-tel hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-tel hide-label{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="tel"
@@ -229,7 +228,7 @@
 
 
 					{% case 'Url' %}
-						<div class="question input-url hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-url hide-label{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="url"
@@ -247,7 +246,7 @@
 
 
 					{% case 'Date' %}
-						<div class="question input-date hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-date hide-label{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="text"
@@ -266,7 +265,7 @@
 
 
 					{% case 'Assets' %}
-						<div class="question input-file hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-file hide-label{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 							<input type="file"
 								{% if question.required %}
@@ -302,7 +301,5 @@
 
 
 			<button value="submit" name="submit" type="submit">{{ submitButton|default('Submit') }}</button>
-
-		</fieldset>
 	</div>
 </script>

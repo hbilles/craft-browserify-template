@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------
 // =masthead
 
-#masthead {
+.masthead {
 	position: fixed;
 	z-index: 100;
 	top: 0;
@@ -28,94 +28,29 @@
 		}
 	}
 
-	@at-root {
-		&__menu-trigger {
-			position: absolute;
-			top: 0;
-			right: 0;
-			margin: 0;
+	&__in {
+		position: relative;
+		margin: 0 1em;
 
-			font-size: 1em;
-			line-height: 1;
-
-			border-left: 1px solid rgba($clr-white, .3);
-			border-right: 1px solid rgba($clr-white, .3);
-
-			@include media($medium) {
-				display: none;
-			}
-			
-			span {
-				position: absolute;
-				top: 0;
-				left: -999em;
-			}
-
-			a {
-				padding: .72em .72em;
-				display: block;
-				font-size: 1.5em;
-
-				&:link,
-				&:visited {
-					color: $clr-ui-link;
-				}
-
-				&:hover,
-				&:visited:hover {
-					color: $clr-ui-link-hover;
-				}
-
-				&:before {
-					@extend %icon-menu;
-				}
-
-				@include media($medium) {
-					font-size: 1.9em;
-				} 
-			}
-
-			.body--menu-open & {
-				background-color: $clr-ui-link;
-
-				a {
-					&:link,
-					&:visited {
-						color: $clr-white;
-					}
-				}
-			}
+		@include media($medium) {
+			width: $width-medium;
+			margin: 0 auto;
 		}
 
-		.body--menu-open & {
-			position: absolute;
-			border-color: rgba(255, 255, 255, .3);
-		}
-	}
-}
-
-.masthead {
-	@at-root {
-		&__in {
-			position: relative;
-			margin: 0 1em;
-
-			@include media($medium) {
-				width: $width-medium;
-				margin: 0 auto;
-			}
-
-			@include media($large) {
-				width: $width-large;
-			}
+		@include media($large) {
+			width: $width-large;
 		}
 	}
 }
 
 #logo {
+	display: block;
 	width: 9.75em;
 	margin: 0;
 	padding: 0;
+	stroke-width: 0;
+
+	transition: all .2s ease-in-out;
 	
 	font-size: 1em;
 
@@ -127,15 +62,6 @@
 	@include media($large) {
 		width: 18em;
 		margin: 0;
-	}
-
-	a {
-		display: block;
-		padding: 1em 0;
-
-		@include media($medium) {
-			padding: 1.5em 0;
-		}
 	}
 
 	img {

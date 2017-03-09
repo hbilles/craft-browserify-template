@@ -50,18 +50,15 @@
 
 
 %bg--dark-grey {
-	background-color: $clr-dark-grey;
+	background-color: $clr-grey-900;
 	color: $clr-off-white;
 
 	a {
-		&:link,
-		&:visited {
-			color: $clr-off-white;
-			text-decoration: underline;
-		}
+		color: $clr-off-white;
+		text-decoration: underline;
 
-		&:hover,
-		&:visited:hover {
+		&:focus,
+		&:hover {
 			color: $clr-white;
 		}
 	}
@@ -69,6 +66,25 @@
 
 .bg--dark-grey {
 	@extend %bg--dark-grey;
+}
+
+%bg--medium-grey {
+	background-color: $clr-grey-700;
+	color: $clr-off-white;
+
+	a {
+		color: $clr-off-white;
+		text-decoration: underline;
+
+		&:focus,
+		&:hover {
+			color: $clr-white;
+		}
+	}
+}
+
+.bg--medium-grey {
+	@extend %bg--medium-grey;
 }
 
 %bg--lightest-grey {
