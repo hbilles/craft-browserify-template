@@ -2,18 +2,19 @@
 // =section (basic content building blocks)
 
 .section {
-
-	&:nth-child(odd) {
-		background-color: $clr-off-white;
-	}
+	position: relative;
 }
 
-.section--intro {
-	text-align: center;
-
+.section--padded {
 	.section__in {
+		padding: vr(1) 0;
+
 		@include media($medium) {
-			padding: 6em 0;
+			padding: vr(2) 0;
+		}
+
+		.firm & {
+			padding: vr(2) 0;
 		}
 	}
 }

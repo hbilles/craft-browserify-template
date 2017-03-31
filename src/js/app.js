@@ -1,4 +1,5 @@
 import './site/masthead'
 import './site/responsiveVideo'
+import './site/carousel'
 import './site/load-forms'
 import './site/set-validation'

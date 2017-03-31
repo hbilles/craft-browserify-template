@@ -1,0 +1,72 @@
+// --------------------------------------------------------------------------
+// team
+
+.team
+	&__group
+		&__copy
+			max-width: 50rem
+
+	&__people
+		@supports (display: grid)
+			display: grid
+			grid-gap: 4px
+			grid-template-columns: repeat(2, 1fr)
+
+			@include media($smallplus)
+				grid-template-columns: repeat(3, 1fr)
+
+			@include media($medium)
+				grid-template-columns: repeat(4, 1fr)
+
+			@include media($large)
+				grid-template-columns: repeat(4, 224px)
+
+		@supports not (display: grid)
+			display: flex
+			flex-wrap: wrap
+			justify-content: flex-start
+
+	&__person
+		display: block
+
+		@supports not (display: grid)
+			width: 47%
+			margin: 0 1% 2%
+
+			@include media($smallplus)
+				width: 31.5%
+				margin: 0 .75% 1.5%
+
+			@include media($medium)
+				width: 23.5%
+
+			@include media($large)
+				width: 220px
+				margin: 0 4px 8px
+
+		color: $clr-off-white
+		background-color: $clr-medium-grey
+
+		&:focus,
+		&:hover
+			color: $clr-off-white
+			background-color: $clr-ui-link
+
+		&__portrait
+			margin: 0
+
+		&__info
+			padding: vr(.5)
+
+		&__name
+			margin: 0 0 vr(1)
+			font-size: 15px
+			line-height: 1
+
+		&__accreditation
+			display: inline-block
+			font-size: 13px
+
+		&__professional-title
+			margin-bottom: 0
+			font-size: 13px

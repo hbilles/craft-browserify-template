@@ -1,0 +1,34 @@
+{% extends '_layouts/main' %}
+
+{% block content %}
+
+{# ------------------------------------
+INTRO CONTENT
+------------------------------------ #}
+<section class="section section--padded">
+	<div class="section__in">
+		<article class="person">
+			{% for image in entry.portrait %}
+				<figure class="person__portrait">
+					<img src="{{ image.getUrl() }}" alt="{{ entry.title }}">
+				</figure>
+			{% endfor %}
+
+			<div class="person__content">
+				<header class="person__header">
+					<h1 class="content__heading">{{ entry.title }}{% if entry.accreditation|length %}, <small class="person__accreditation">{% for item in entry.accreditation %}{{ item.accreditation }}{% if not loop.last %}, {% endif %}{% endfor %}</small>{% endif %}</h1>
+					<h3 class="person__professional-title">{{ entry.professionalTitle }}</h3>
+				</header>
+				
+				{% if entry.bio|length %}
+				<div class="content__copy person__bio">
+					{{ entry.bio | md }}
+				</div>
+				{% endif %}
+			</div>
+		</article>
+	</div>
+</section>
+
+
+{% endblock %}

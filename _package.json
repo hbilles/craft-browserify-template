@@ -102,13 +102,16 @@
     "yargs": "^4.8.0"
   },
   "dependencies": {
+    "axios": "^0.15.3",
+    "bunnyjs": "^0.14.28",
+    "flickity": "^2.0.5",
+    "flickity-imagesloaded": "^2.0.0",
     "imagesloaded": "^4.1.0",
     "jquery": "^3.1.0",
     "jquery-match-height": "^0.7.0",
     "jquery-placeholder": "^2.3.1",
     "lodash": "^4.13.1",
     "typi": "^2.2.0",
-    "velocity-animate": "^1.2.3",
-    "owl.carousel": "git+https://github.com/smashingboxes/OwlCarousel2.git"
+    "velocity-animate": "^1.2.3"
   }
 }

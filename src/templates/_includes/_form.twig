@@ -1,5 +1,6 @@
 {% set form = craft.perform.getForm(form) %}
 {% set hiddenValue = hiddenValue|default('') %}
+{% set showHeading = showHeading is defined ? showHeading : true %}
 
 <script type="text/template" data-type="form" data-class="form" data-enctype="multipart/form-data">
 	{{ getCsrfInput() }}
@@ -8,7 +9,7 @@
 	<input type="hidden" name="formId" value="{{ form.id }}">
 
 	<div class="questions">
-		<h2>{{ formTitle|default(form.name) }}</h2>
+		{% if showHeading %}<h2 class="form__heading">{{ formTitle|default(form.name) }}</h2>{% endif %}
 
 
 			{% if craft.request.getQuery('success') %}
@@ -33,7 +34,7 @@
 				{% switch question.type %}
 
 					{% case 'PlainText' %}
-						<div class="form__group input-plain-text hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-plain-text{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="text"
@@ -43,7 +44,6 @@
 									data-validation-required="'{{ question.name }}' is required"
 								{% endif %}
 								class="text"
-								placeholder="{{ question.name }}"
 								id="{{ question.handle }}"
 								name="questions[{{ question.handle }}]"
 								value="{{ submission is defined ? submission[question.handle] }}">
@@ -51,7 +51,7 @@
 
 
 					{% case 'MultilineText' %}
-						<div class="form__group textarea hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group textarea{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<textarea
@@ -61,7 +61,6 @@
 									data-validation-required="'{{ question.name }}' is required"
 								{% endif %}
 								class="text"
-								placeholder="{{ question.name }}"
 								cols="40" rows="10"
 								id="{{ question.handle }}"
 								name="questions[{{ question.handle }}]">{{ submission is defined ? submission[question.handle] }}</textarea>
@@ -174,7 +173,7 @@
 
 
 					{% case 'Number' %}
-						<div class="form__group input-number hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-number{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="number"
@@ -184,7 +183,6 @@
 									data-validation-required="'{{ question.name }}' is required"
 								{% endif %}
 								class="text"
-								placeholder="{{ question.name }}"
 								id="{{ question.handle }}"
 								name="questions[{{ question.handle }}]"
 								value="{{ submission is defined ? submission[question.handle] }}">
@@ -192,7 +190,7 @@
 
 
 					{% case 'Email' %}
-						<div class="form__group input-email hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-email{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="email"
@@ -202,7 +200,7 @@
 									data-validation-required="'{{ question.name }}' is required"
 								{% endif %}
 								class="text"
-								placeholder="{{ question.name }}"
+								placeholder="jane@example.com"
 								id="{{ question.handle }}"
 								name="questions[{{ question.handle }}]"
 								value="{{ submission is defined ? submission[question.handle] }}">
@@ -210,7 +208,7 @@
 
 
 					{% case 'Tel' %}
-						<div class="form__group input-tel hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-tel{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="tel"
@@ -228,7 +226,7 @@
 
 
 					{% case 'Url' %}
-						<div class="form__group input-url hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-url{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="url"
@@ -238,7 +236,7 @@
 									data-validation-required="'{{ question.name }}' is required"
 								{% endif %}
 								class="text"
-								placeholder="{{ question.name }}"
+								placeholder="http://acme.com"
 								id="{{ question.handle }}"
 								name="questions[{{ question.handle }}]"
 								value="{{ submission is defined ? submission[question.handle] }}">
@@ -246,7 +244,7 @@
 
 
 					{% case 'Date' %}
-						<div class="form__group input-date hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-date{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 
 							<input type="text"
@@ -265,7 +263,7 @@
 
 
 					{% case 'Assets' %}
-						<div class="form__group input-file hide-label{% if question.required %} required{% endif %}">
+						<div class="form__group input-file{% if question.required %} required{% endif %}">
 							<label for="{{ question.handle }}">{{ question.name }}</label>
 							<input type="file"
 								{% if question.required %}
@@ -300,6 +298,6 @@
 			{% endif %}
 
 
-			<button value="submit" name="submit" type="submit">{{ submitButton|default('Submit') }}</button>
+			<button class="button button--outline" value="submit" name="submit" type="submit">{{ submitButton|default('Submit') }}</button>
 	</div>
 </script>

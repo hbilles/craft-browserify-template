@@ -1,0 +1,21 @@
+// --------------------------------------------------------------------------
+// person
+
+.person
+	margin: vr(.5) 0 0
+
+	@include media($smallplus)
+		display: flex
+		justify-content: flex-start
+
+	&__portrait
+		flex-shrink: 0
+		width: 160px
+		margin-right: vr(1)
+
+	&__accreditation
+		@include typi($h3-map)
+		display: inline-block
+
+	&__professional-title
+		@include typi($h3-map)

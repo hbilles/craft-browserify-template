@@ -1,15 +1,13 @@
 body {
-	background-color: $clr-lightest-grey;
+	// background-color: $clr-lightest-grey;
 }
 
 #site {
 	position: relative;
 	overflow-x: hidden;
-	background-color: $clr-white;
-}
-
-#page {
 	padding-top: $mh-height-small; //masthead height
+	
+	background-color: $clr-white;
 
 	@include media($medium) {
 		padding-top: $mh-height-medium;

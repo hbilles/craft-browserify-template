@@ -1,5 +1,7 @@
 {% extends '_layouts/main' %}
 
+{% set pageClass = 'news' %}
+
 {% block content %}
 
 {# ------------------------------------
@@ -9,14 +11,22 @@ INTRO CONTENT
 	<div class="section__in">
 		<h1 class="content__heading">{{ entry.heading }}</h1>
 
-		<div class="content__copy">
-			{{ entry.copy | md }}
+		{% if entry.summary|length %}
+		<div class="content__summary">
+			{{ entry.summary | md }}
 		</div>
+		{% endif %}
 
-		<a href="#" class="button go">Learn more</a>
+		<div class="news__listing">
+		{% for item in craft.entries({
+			section: 'news',
+			limit: 10
+		}) %}
+			{% include 'news/_item' %}
+		{% endfor %}
+		</div>
 	</div>
 </section>
 
 
 {% endblock %}
-

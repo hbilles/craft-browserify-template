@@ -1,0 +1,64 @@
+{% extends '_layouts/main' %}
+
+{% block content %}
+
+{# ------------------------------------
+INTRO CONTENT
+------------------------------------ #}
+<section class="section section--padded">
+	<div class="section__in">
+		<h1 class="content__heading">{{ entry.heading }}</h1>
+
+		{% if entry.summary|length %}
+		<div class="content__summary">
+			{{ entry.summary | md }}
+		</div>
+		{% endif %}
+		
+		{% if entry.copy|length %}
+		<div class="content__copy">
+			{{ entry.copy | md }}
+		</div>
+		{% endif %}
+
+		{% for group in craft.entries({
+			section: 'team',
+			level: 1
+		}) %}
+		<section class="team__group">
+			<h2 class="team__group__heading">{{ group.title }}</h2>
+
+			{% if group.copy|length %}
+			<div class="team__group__copy">
+				{{ group.copy | md }}
+			</div>
+
+			<div class="team__people">
+				{% for person in craft.entries.find({
+					descendantOf: group.id
+				}) %}
+				<a class="team__person" href="{{ person.url }}">
+					{% set friendlyName = person.friendlyName|default(person.firstName) %}
+					{% for image in person.portrait %}
+						<figure class="team__person__portrait">
+							<img src="{{ image.getUrl() }}" alt="{{ person.title }}">
+						</figure>
+					{% endfor %}
+					
+					<header class="team__person__info">
+						<h3 class="team__person__name">
+							{{ person.title }}{% if person.accreditation|length %}, <small class="team__person__accreditation">{% for item in person.accreditation %}{{ item.accreditation }}{% if not loop.last %}, {% endif %}{% endfor %}</small>{% endif %}
+						</h3>
+						<h4 class="team__person__professional-title">{{ person.professionalTitle }}</h4>
+					</header>
+				</a>
+				{% endfor %}
+			</div>
+			{% endif %}
+		</section>
+		{% endfor %}
+	</div>
+</section>
+
+
+{% endblock %}

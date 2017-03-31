@@ -1,0 +1,37 @@
+.icon
+	display: inline-block
+	width: 1em
+	height: 1em
+	stroke-width: 0
+	stroke: currentColor
+	fill: currentColor
+
+	&--x2
+		width: 2em
+		height: 2em
+
+	&--x3
+		width: 3em
+		height: 3em
+
+	&--x4
+		width: 4em
+		height: 4em
+
+	&--x5
+		width: 5em
+		height: 5em
+
+	&--x6
+		width: 6em
+		height: 6em
+
+	&--shadow
+		filter: drop-shadow(0 .2em .125em rgba(0, 0, 0, .15))
+
+		&.icon--button:hover
+			filter: drop-shadow(0 .25em .25em rgba(0, 0, 0, .2))
+
+	&--button
+		cursor: pointer
+		transition: all .2s ease-in-out

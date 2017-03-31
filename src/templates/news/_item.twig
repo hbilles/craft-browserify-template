@@ -1,0 +1,24 @@
+<a class="news__item" href="{{ item.url }}" title="{{ item.summary }}">
+	{% set asset = item.newsImages.first() %}
+
+	<div class="news__item__intro">
+		{% if asset|length %}
+			<figure class="news__item__image">
+				<img src="{{ asset.getUrl('largeGolden') }}" alt="{{ asset.title }}">
+			</figure>
+		{% else %}
+			<figure class="news__item__image">
+				<img src="http://loremflickr.com/800/494/nature?random={{ random() }}">
+			</figure>
+		{% endif %}
+
+		<header class="news__item__meta">
+			<h3 class="news__item__heading"><span>{{ item.title }}</span></h3>
+			{% include '_includes/_date' with { postDate: item.postDate, class: 'news__item__date' } %}
+		</header>
+	</div>
+
+	{% if item.summary %}
+		<div class="news__item__summary">{{ item.summary | md }}</div>
+	{% endif %}
+</a>

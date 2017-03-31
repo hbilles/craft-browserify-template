@@ -51,6 +51,8 @@ export default {
 					'ie >= 10',
 					'android >= 4',
 				],
+				supports: false,
+				grid: false,
 			},
 		},
 
@@ -58,7 +60,7 @@ export default {
 			src: path.join(paths.src, 'js'),
 			dist: path.join(paths.dist, 'js'),
 			files: ['app.js'],
-			extensions: ['js', null],
+			extensions: ['js', 'vue', null],
 		},
 
 		templates: {

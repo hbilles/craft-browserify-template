@@ -1,21 +1,44 @@
 // --------------------------------------------------------------------------
 // =contact
 
-.contact__content {
-	@include media($large) {
-		width: 40%;
-		float: left;
+.contact {
 
-		p {
-			font-size: em($fs-body-medium);
+	.section__in {
+		@include media($medium) {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
 		}
 	}
-}
 
-.contact__form {
-	@include media($large) {
-		width: 50%;
-		float: right;
+	&__content {
+		@include media($medium) {
+			width: 33%;
+		}
+		
+		@include media($large) {
+			p {
+				font-size: em($fs-body-medium);
+			}
+		}
+	}
+
+	&__form {
+		@include media($medium) {
+			width: 62%;
+		}
+
+		.form__heading {
+			@include typi($h3-map);
+
+			@include media($medium) {
+				margin-top: 0;
+			}
+		}
+	}
+
+	&__phone,
+	&__fax {
+		margin: 0;
 	}
 }
-

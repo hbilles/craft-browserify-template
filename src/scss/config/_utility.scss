@@ -7,3 +7,27 @@
 	background-repeat: repeat-x;
 	background-position: 0 $position;
 }
+
+@mixin setColors($color: $clr-off-white, $bgColor: $clr-grey-900, $setLinkProps: true, $linkColor: $clr-off-white, $linkHoverColor: $clr-white, $underline: true) {
+	background-color: $bgColor;
+	color: $color;
+
+	@if $setLinkProps {
+		a {
+			color: $linkColor;
+			
+			@if $underline {
+				text-decoration: underline;
+			}
+
+			&:focus,
+			&:hover {
+				color: $linkHoverColor;
+			}
+		}
+	}
+}
+
+@mixin setDarkBg($bgColor: $clr-grey-900) {
+	@include setColors($clr-off-white, $bgColor);
+}

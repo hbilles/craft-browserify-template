@@ -1,0 +1,52 @@
+{% extends '_layouts/main' %}
+
+{% set pageClass = 'contact' %}
+
+{% block content %}
+
+{# ------------------------------------
+INTRO CONTENT
+------------------------------------ #}
+<section class="section section--padded">
+	<div class="section__in">
+		<div class="contact__content">
+			<h1 class="content__heading">{{ entry.heading }}</h1>
+
+			{% if entry.summary|length %}
+			<div class="content__summary">
+				{{ entry.summary | md }}
+			</div>
+			{% endif %}
+
+			{% if entry.copy|length %}
+			<div class="content__copy">
+				{{ entry.copy | md }}
+			</div>
+			{% endif %}
+
+			<div class="contact__details">
+				{% include '_includes/_address' with { location: entry } %}
+
+				<div class="contact__methods">
+					{% if entry.phoneNumber %}
+						{% include '_includes/_phone' with { number: entry.phoneNumber, label: 'phone' } %}
+					{% endif %}
+					{% if entry.faxNumber %}
+						{% include '_includes/_phone' with { number: entry.faxNumber, label: 'fax' } %}
+					{% endif %}
+					{% set emailLink = '<a href="mailto:' ~ entry.emailAddress ~ '">' ~ entry.emailAddress ~ '</a>' %}
+					<p class="contact__email">
+						{{ emailLink | rot13 }}
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="contact__form">
+			{% set form = entry.form %}
+			{% include '_includes/_form' with { formTitle: 'Get In Touch' } %}
+		</div>
+	</div>
+</section>
+
+{% endblock %}

@@ -3,12 +3,14 @@
 @import "../../node_modules/bourbon-neat/app/assets/stylesheets/neat";
 @import "vendor/modular-scale";
 @import "../../node_modules/typi/scss/typi";
+@import "vendor/flickity.scss";
 
 @import "config/webfonts.scss";
 @import "config/colors.scss";
 @import "config/font-sizes.scss";
 @import "config/h5bp.scss";
 @import "config/misc-variables.scss";
+@import "config/typi.scss";
 @import "config/utility.scss";
 
 @import "base/general.scss";
@@ -16,20 +18,23 @@
 @import "base/links.scss";
 
 @import "components/button.sass";
+@import "components/carousel.sass";
 @import "components/form.sass";
+@import "components/icon.sass";
 @import "components/loader.sass";
 @import "components/notice.sass";
 @import "components/video.sass";
 
 @import "modules/site.scss";
-@import "modules/icon.scss";
+@import "modules/content.sass";
 @import "modules/global.scss";
-@import "modules/owl-carousel.scss";
-@import "modules/owl-theme.scss";
 @import "modules/masthead.scss";
 @import "modules/section.scss";
 @import "modules/navigation.scss";
 @import "modules/home.scss";
+@import "modules/team.sass";
+@import "modules/person.sass";
+@import "modules/news.sass";
 @import "modules/contact.scss";
 @import "modules/quote.scss";
 @import "modules/blocks.scss";

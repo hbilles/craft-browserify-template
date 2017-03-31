@@ -1,0 +1,58 @@
+{% extends '_layouts/main' %}
+
+{% set pageClass = 'news' %}
+
+{% block content %}
+
+{# ------------------------------------
+INTRO CONTENT
+------------------------------------ #}
+<section class="section section--padded">
+	<div class="section__in">
+		{% include '_includes/_carousel' with { images: entry.newsImages } %}
+
+		<h1 class="news__heading">{{ entry.title }}</h1>
+		{% include '_includes/_date' with { postDate: entry.postDate, class: 'news__date' } %}
+
+		{% if entry.summary|length %}
+		<div class="content__summary">
+			{{ entry.summary | md }}
+		</div>
+		{% endif %}
+
+		{% if entry.copy|length %}
+		<div class="content__copy">
+			{{ entry.copy | md }}
+		</div>
+		{% endif %}
+
+		{% if entry.type == 'pressCoverage' and entry.archivedCopy|length %}
+		<div class="news__archived">
+			{% if entry.publicationTitle %}
+			<h2 class="news__archived__heading">{% if entry.publicationUrl %}<a href="{{ entry.publicationUrl }}" title="Original article">{% endif %}{{ entry.publicationTitle }}{% if entry.publicationUrl %}</a>{% endif %}</h2>
+			{% endif %}
+
+			{% if entry.publicationName %}
+			<h3 class="news__archived__publication">{{entry.publicationName }}</h3>
+			{% endif %}
+			{% include '_includes/_date' with { postDate: entry.publicationDat, class: 'news__archived__date' } %}
+		</div>
+		{% endif %}
+
+		{% if entry.newsDownloads|length %}
+		<section class="news__downloads">
+			<h4 class="news__subheading">Downloads</h4>
+			<ul>
+				{% for asset in entry.newsDownloads %}
+					<li>
+						<a href="{{ asset.url }}" title="Download this file">{{ asset.title }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</section>
+		{% endif %}
+	</div>
+</section>
+
+
+{% endblock %}

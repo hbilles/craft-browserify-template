@@ -1,0 +1,16 @@
+// -------------------------------------------------------------------------
+// =content
+
+.content
+	&__heading
+		@include font-sans(300)
+
+		&:first-of-type
+			margin-top: 0;
+
+	&__summary
+		@include typi($h3-map)
+
+	&__summary,
+	&__copy
+		max-width: 50rem

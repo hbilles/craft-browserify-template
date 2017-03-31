@@ -1,0 +1,110 @@
+// -------------------------------------------------------------------------
+// =news
+
+.news
+	&__listing
+
+		@include media($medium)
+			display: flex
+			flex-wrap: wrap
+			justify-content: flex-start
+			width: 100%
+
+		@supports (display: grid)
+			@include media($medium)
+				display: grid
+				grid-gap: 8px
+				grid-template-columns: repeat(2, 1fr)
+
+			@include media($large)
+				grid-template-columns: repeat(3, 298px)
+
+	&__item
+		display: block
+		margin: 0 0 vr(.5)
+
+		color: $clr-off-white
+		background-color: $clr-medium-grey
+
+		@include media($medium)
+			width: 48%
+			margin: 0 1% 2%
+
+		@include media($large)
+			width: 296px
+			margin: 0 4px 8px
+
+		@supports (display: grid)
+			@include media($medium)
+				width: auto
+				margin: 0
+
+		&:focus,
+		&:hover
+			color: $clr-off-white
+			background-color: $clr-ui-link
+
+		&__intro
+			position: relative
+			height: 0
+			margin: 0
+			padding-top: 61.8%
+
+		&__image
+			position: absolute
+			top: 0
+			left: 0
+			margin: 0
+
+			& + .news__item__meta
+				position: absolute
+				bottom: 0
+				left: 0
+				width: 100%
+				padding: vr(.5)
+
+				background-color: rgba(0, 0, 0, .6)
+				transition: background-color .2s ease-in-out
+
+				.news__item:focus &,
+				.news__item:hover &
+					background-color: $clr-ui-link
+
+		&__meta
+			padding: vr(.5) vr(.5) 0
+
+		&__heading
+			margin: 0
+
+			font-size: 17px
+			font-weight: 700
+			line-height: 1.2
+
+		&__date
+			display: block
+
+			font-size: 12px
+			text-transform: uppercase
+			letter-spacing: .04em
+
+		&__summary
+			padding: vr(.5)
+
+			p
+				font-size: 14px
+
+				&:last-child
+					margin: 0
+	
+	&__heading
+		margin: 0
+		line-height: 1.2
+
+	&__date
+		display: block
+		margin: 0 0 vr(1)
+
+	&__subheading
+		@include typi($h4-map)
+		
+		margin: 0 0 vr(.5)

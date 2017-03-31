@@ -1,0 +1,24 @@
+{% if images|length %}
+	<div class="gallery{% if images|length > 1 %} carousel{% endif %}">
+		{% for asset in images %}
+		<div class="carousel__cell">
+			<img src="{{ asset.getUrl('largeGolden') }}" alt="{{ asset.title }}">
+		</div>
+		{% endfor %}
+	</div>
+{% else %}
+	<div class="gallery carousel">
+		<div class="carousel__cell">
+			<img src="http://loremflickr.com/800/494/nature?random={{ random() }}" alt="">
+		</div>
+		<div class="carousel__cell">
+			<img src="http://loremflickr.com/800/494/nature?random={{ random() }}" alt="">
+		</div>
+		<div class="carousel__cell">
+			<img src="http://loremflickr.com/800/494/nature?random={{ random() }}" alt="">
+		</div>
+		<div class="carousel__cell">
+			<img src="http://loremflickr.com/800/494/nature?random={{ random() }}" alt="">
+		</div>
+	</div>
+{% endif %}

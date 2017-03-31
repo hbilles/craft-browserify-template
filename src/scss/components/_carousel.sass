@@ -1,0 +1,20 @@
+// -------------------------------------------------------------------------
+// =carousel
+
+.carousel
+	margin: 0 0 vr(2)	
+
+	&__cell
+		img
+			width: calc(100vw - 2em)
+
+			@include media($medium)
+				width: calc(100vw - 4em)
+
+	.flickity-prev-next-button
+		background-color: rgba(255, 255, 255, .4)
+		transition: background-color .2s ease-in-out
+
+		&:focus,
+		&:hover
+			background-color: white
