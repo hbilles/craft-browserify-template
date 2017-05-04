@@ -45,7 +45,9 @@ While actively developing, watch source files and rebuild as needed. This comman
 
 To generate minified copies of all the assets without sourcemaps for production, run the following command:
 
-    npm run build --production
+    npm run production
+
+Note that once a production build has been built, you will need to run `npm run build` before running `npm run watch`, otherwise the browser updates won't show the changes you'll make.
 
 ## Update Apache Virtual Hosts file
 
