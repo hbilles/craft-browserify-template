@@ -19,14 +19,14 @@ nav {
 
 // 	background-color: $clr-ui-link-hover;
 
-// 	@include media($large) {
+// 	@include media(">=large") {
 // 		display: none;
 // 	}
 
 // 	li {
 // 		font-size: rem(20);
 
-// 		@include media($medium) {
+// 		@include media(">=medium") {
 // 			font-size: rem(24);
 // 		}
 // 	}
@@ -61,7 +61,7 @@ nav {
 // 			}
 // 		}
 
-// 		@include media($medium) {
+// 		@include media(">=medium") {
 // 			span {
 // 				display: block;
 // 				width: $width-medium;
@@ -82,7 +82,7 @@ nav {
 	
 // 	border-top: 1px solid rgba(255, 255, 255, .3);
 
-// 	@include media($medium) {
+// 	@include media(">=medium") {
 // 		top: 6.4em;
 // 	}
 // }
@@ -95,7 +95,7 @@ nav {
 
 	// background-color: $clr-grey-200;
 
-	@include media($medium) {
+	@include media(">=medium") {
 		display: block;
 
 		position: absolute;
@@ -107,7 +107,7 @@ nav {
 		text-align: right;
 	}
 
-	// @include media($large) {
+	// @include media(">=large") {
 	// 	top: auto;
 	// 	bottom: -28px;
 	// 	margin: 0;
@@ -115,13 +115,13 @@ nav {
 
 	&__in {
 
-		@include media($medium) {
+		@include media(">=medium") {
 			display: block;
 			height: auto;
 			padding: 0;
 		}
 
-		// @include media($large) {
+		// @include media(">=large") {
 		// 	display: inline-flex;
 		// 	flex-direction: row-reverse;
 		// 	align-items: center;
@@ -137,12 +137,12 @@ nav {
 		top: -32px;
 		right: 12px;
 
-		@include media($medium) {
+		@include media(">=medium") {
 			top: auto;
 			bottom: -42px;
 		}
 
-		@include media($large) {
+		@include media(">=large") {
 			position: static;
 			margin-left: 16px;
 		}
@@ -151,11 +151,11 @@ nav {
 			display: inline-block;
 			font-size: 12px;
 
-			@include media($medium) {
+			@include media(">=medium") {
 				font-size: 13px;
 			}
 
-			// @include media($xlarge) {
+			// @include media(">=xlarge") {
 			// 	font-size: 22px;
 			// }
 		}
@@ -165,14 +165,14 @@ nav {
 		display: flex;
 		justify-content: space-between;
 
-		@include media($smallplus) {
+		@include media(">=smallplus") {
 			justify-content: flex-end;
 		}
 
 		li {
 			font-size: 13px;
 
-			@include media($medium) {
+			@include media(">=medium") {
 				font-size: 16px;
 			}
 		}
@@ -217,7 +217,7 @@ nav {
 		width: 100vw;
 		padding: 0 4px;
 
-		@include media($medium) {
+		@include media(">=medium") {
 			padding: 0 vr(1);
 		}
 	}
@@ -246,12 +246,12 @@ nav {
 // 	//right: 1em;
 // 	margin: 0;
 
-// 	@include media($medium) {
+// 	@include media(">=medium") {
 // 		display: block;
 // 		text-align: center;
 // 	}
 
-// 	@include media($large) {
+// 	@include media(">=large") {
 // 		position: absolute;
 // 		top: 1.4em;
 // 		right: 1em;
@@ -263,8 +263,8 @@ nav {
 // 		display: inline-block;
 // 		padding: .75em .125em;
 
-// 		@include media($medium) {
-// 			font-size: rem($fs-body-small);
+// 		@include media(">=medium") {
+// 			font-size: 16px;
 // 		}
 // 	}
 
@@ -292,12 +292,12 @@ nav {
 	@include clearfix;
 	margin: 0 1em 1.5em;
 
-	@include media($medium) {
+	@include media(">=medium") {
 		width: $width-medium;
 		margin: 0 auto 1.5em;
 	}
 
-	@include media($large) {
+	@include media(">=large") {
 		width: $width-large;
 	}
 }

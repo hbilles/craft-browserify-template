@@ -102,7 +102,7 @@
 .heading-group {
 	margin: 2rem 0 1.5rem;
 
-	@include media($medium) {
+	@include media(">=medium") {
 		margin: 3rem 0 1.5rem;
 	}
 

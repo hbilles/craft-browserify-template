@@ -7,28 +7,27 @@ button,
 input[type='button'],
 input[type='reset'],
 input[type='submit']
-	@include transition(all 0.2s ease-in-out)
-
-	background-color: $clr-ui-link
+	display: inline-block
+	padding: 0 2em
 	border: .1rem solid $clr-ui-link
 	border-radius: .4rem
+	background-color: $clr-ui-link
 	color: $clr-ui-link-contrast
 	cursor: pointer
-	display: inline-block
 	font-size: .875rem
 	// font-weight: 700
 	letter-spacing: .1em
 	line-height: 2.5714em
-	padding: 0 2em
 	text-align: center
 	text-decoration: none
 	// text-transform: uppercase
 	white-space: nowrap
+	transition: all 0.2s ease-in-out
 
 	&:focus,
 	&:hover
-		background-color: $clr-ui-link-hover
 		border-color: $clr-ui-link-hover
+		background-color: $clr-ui-link-hover
 		color: $clr-ui-link-hover-contrast
 		outline: 0
 

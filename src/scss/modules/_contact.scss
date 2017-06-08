@@ -4,7 +4,7 @@
 .contact {
 
 	.section__in {
-		@include media($medium) {
+		@include media(">=medium") {
 			display: flex;
 			justify-content: space-between;
 			align-items: flex-start;
@@ -12,26 +12,26 @@
 	}
 
 	&__content {
-		@include media($medium) {
+		@include media(">=medium") {
 			width: 33%;
 		}
 		
-		@include media($large) {
+		@include media(">=large") {
 			p {
-				font-size: em($fs-body-medium);
+				font-size: 18px
 			}
 		}
 	}
 
 	&__form {
-		@include media($medium) {
+		@include media(">=medium") {
 			width: 62%;
 		}
 
 		.form__heading {
 			@include typi($h3-map);
 
-			@include media($medium) {
+			@include media(">=medium") {
 				margin-top: 0;
 			}
 		}

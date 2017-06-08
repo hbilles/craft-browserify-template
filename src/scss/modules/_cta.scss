@@ -9,25 +9,25 @@ div.cta {
 	margin: 0 0 1.5em;
 	padding: 1em;
 
-	@include media($medium) {
+	@include media(">=medium") {
 		padding: 2em;
 	}
 }
 
 .cta--has-form {
-	@include media($large) {
+	@include media(">=large") {
 		text-align: left;
 	}
 
 	.cta__content {
-		@include media($large) {
+		@include media(">=large") {
 			float: left;
 			width: 40%;
 		}
 	}
 
 	h2 {
-		@include media($large) {
+		@include media(">=large") {
 			text-align: left;
 		} 
 	}
@@ -38,7 +38,7 @@ div.cta {
 	margin-left: auto;
 	margin-right: auto;
 
-	@include media($large) {
+	@include media(">=large") {
 		float: right;
 		width: 48%;
 	}
@@ -47,7 +47,7 @@ div.cta {
 .cta__heading {
 	margin: .25em 0;
 
-	@include media($large) {
+	@include media(">=large") {
 		margin: 0 0 .5em;
 	}
 }
@@ -58,28 +58,28 @@ div.cta {
 
 .cta__company,
 .cta__phone {
-	@include media($medium) {
+	@include media(">=medium") {
 		display: inline-block;
 		width: 14.4em;
 		margin-left: .4em;
 		margin-right: .4em;
 	}
 
-	@include media($large) {
+	@include media(">=large") {
 		display: inline-block;
 		width: 48%;
 	}
 }
 
 .cta__company {
-	@include media($large) {
+	@include media(">=large") {
 		margin-left: 0;
 		margin-right: 3.2%;
 	}
 }
 
 .cta__phone {
-	@include media($large) {
+	@include media(">=large") {
 		margin-left: 0;
 		margin-right: 0;
 	}

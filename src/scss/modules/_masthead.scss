@@ -15,11 +15,11 @@
 	&.masthead--up {
 		top: ($mh-height-small * -1); //masthead height
 
-		@include media($medium) {
+		@include media(">=medium") {
 			top: ($mh-height-medium * -1);
 		}
 
-		@include media($large) {
+		@include media(">=large") {
 			top: ($mh-height-large * -1);
 		}
 
@@ -32,12 +32,12 @@
 		position: relative;
 		margin: 0 1em;
 
-		@include media($medium) {
+		@include media(">=medium") {
 			width: $width-medium;
 			margin: 0 auto;
 		}
 
-		@include media($large) {
+		@include media(">=large") {
 			width: $width-large;
 		}
 	}
@@ -54,12 +54,12 @@
 	
 	font-size: 1em;
 
-	@include media($medium) {
+	@include media(">=medium") {
 		//width: 16em;
 		width: 18em;
 	}
 
-	@include media($large) {
+	@include media(">=large") {
 		width: 18em;
 		margin: 0;
 	}

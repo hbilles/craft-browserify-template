@@ -11,7 +11,7 @@
 		font-size: 10px;
 		line-height: 1.9;
 
-		@include media($medium) {
+		@include media(">=medium") {
 			font-size: 14px;
 			// line-height: 2.3;
 		}
@@ -23,19 +23,19 @@
 	font-size: 12px;
 	-webkit-font-smoothing: antialiased;
 
-	@include media($medium) {
+	@include media(">=medium") {
 		font-size: 14px;
 	}
 }
 
 .footer__primary {
-	@include media($medium) {
+	@include media(">=medium") {
 		display: inline-block;
 		width: 70%;
 		margin: 0 10% 0 0;
 	}
 
-	@include media($large) {
+	@include media(">=large") {
 		width: 55%;
 	}
 }
@@ -46,7 +46,7 @@
 }
 
 .footer__about {
-	@include media($large) {
+	@include media(">=large") {
 		display: inline-block;
 		vertical-align: top;
 		width: 60%;
@@ -55,14 +55,14 @@
 }
 
 .footer__nav {
-	@include media($medium) {
+	@include media(">=medium") {
 		display: inline-block;
 		vertical-align: top;
 		width: 20%;
 		margin: 0 0 1.5em;
 	}
 
-	@include media($large) {
+	@include media(">=large") {
 		width: 35%;
 	}
 
@@ -72,7 +72,7 @@
 		vertical-align: top;
 		width: 35%;
 
-		@include media($medium-only) {
+		@include media(">=medium", "<large") {
 			width: 100%;
 		}
 	}
@@ -82,7 +82,7 @@
 	}
 
 	&__col-2 {
-		@include media($medium-only) {
+		@include media(">=medium", "<large") {
 			border-top: 1px solid rgba(255, 255, 255, .3);
 		}
 	}
@@ -99,7 +99,7 @@
 			border-top: 1px solid rgba(255, 255, 255, .3);
 		}
 
-		@include media($medium) {
+		@include media(">=medium") {
 			font-size: 14px;
 		}
 
@@ -113,7 +113,7 @@
 }
 
 .footer__contact {
-	@include media($large) {
+	@include media(">=large") {
 		display: inline-block;
 		vertical-align: top;
 		width: 30%;
@@ -125,7 +125,7 @@
 		width: 50%;
 		vertical-align: top;
 
-		@include media($large) {
+		@include media(">=large") {
 			display: block;
 			width: 100%;
 		}
@@ -147,12 +147,12 @@
 	margin: 0 1em;
 	padding: 2em 0;
 
-	@include media($medium) {
+	@include media(">=medium") {
 		margin: 0 2em;
 		padding: vr(2) 0 vr(1);
 	}
 
-	@include media($xlarge) {
+	@include media(">=xlarge") {
 		margin: 0 4em;
 	}
 }
@@ -162,7 +162,7 @@
 
 	.footer__in {
 
-		@include media($medium) {
+		@include media(">=medium") {
 			padding: 2em 0 1em;
 		}
 	}
@@ -170,7 +170,7 @@
 	.social-media {
 		margin: 0 0 .5em;
 
-		@include media($medium) {
+		@include media(">=medium") {
 			float: right;
 		}
 	}
@@ -180,7 +180,7 @@
 		margin: 0;
 		font-size: 8px;
 
-		@include media($medium) {
+		@include media(">=medium") {
 			font-size: 13px;
 		}
 	}

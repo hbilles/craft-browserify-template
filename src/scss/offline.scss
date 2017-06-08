@@ -1,12 +1,11 @@
-@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
-@import "config/grid-settings.scss";
-@import "../../node_modules/bourbon-neat/app/assets/stylesheets/neat";
+@import "config/misc-variables.sass";
+
+@import "../../node_modules/include-media/dist/include-media";
+@import "../../node_modules/font-face-mixin/fontface";
 
 @import "config/webfonts.scss";
-@import "config/colors.scss";
-@import "config/font-sizes.scss";
+@import "config/colors.sass";
 @import "config/h5bp.scss";
-@import "config/misc-variables.scss";
 
 
 html,

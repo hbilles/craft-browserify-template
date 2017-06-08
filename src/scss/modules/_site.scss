@@ -9,11 +9,11 @@ body {
 	
 	background-color: $clr-white;
 
-	@include media($medium) {
+	@include media(">=medium") {
 		padding-top: $mh-height-medium;
 	}
 
-	@include media($large) {
+	@include media(">=large") {
 		padding-top: $mh-height-large;
 	}
 }

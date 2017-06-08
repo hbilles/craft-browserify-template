@@ -3,7 +3,7 @@
   "description": "Website code repo for <%= siteName %>",
   "repository": {
     "type": "git",
-    "url": "https://git@bitbucket.org/line58/<%= domainName %>.git"
+    "url": "https://git@bitbucket.org/hbilles/<%= domainName %>.git"
   },
   "version": "0.1.0",
   "browserify": {
@@ -13,9 +13,6 @@
     ]
   },
   "scripts": {
-    "dbPullProduction": "./dbPullProduction.sh",
-    "dbPullStaging": "./dbPullStaging.sh",
-    "dbPushStaging": "./dbPushStaging.sh",
     "watch": "gulp watch",
     "build": "gulp",
     "production": "gulp --production"
@@ -24,12 +21,10 @@
     "jquery": "./node_modules/jquery/dist/jquery.js",
     "lodash": "./node_modules/lodash",
     "chosen": "./src/js/vendor/chosen.customized.jquery.js",
-    "fitVids": "./src/js/vendor/jquery.fitvids.js",
     "wolfy87-eventemitter": "./node_modules/wolfy87-eventemitter/EventEmitter.js",
     "eventie": "./node_modules/eventie/eventie.js",
     "imagesLoaded": "./node_modules/imagesloaded/imagesloaded.js",
     "matchHeight": "./node_modules/jquery-match-height/jquery.matchHeight.js",
-    "owlCarousel": "./node_modules/owl.carousel/dist/owl.carousel.js",
     "placeholder": "./node_modules/jquery-placeholder/jquery.placeholder.js",
     "validate": "./src/js/vendor/jquery.validate.js",
     "validateAdditional": "./src/js/vendor/jquery.validate.additional.js",
@@ -37,16 +32,6 @@
     "velocity-ui": "./node_modules/velocity-animate/velocity.ui.js"
   },
   "browserify-shim": {
-    "owlCarousel": {
-      "depends": [
-        "jquery:window.jQuery"
-      ]
-    },
-    "fitVids": {
-      "depends": [
-        "jquery:window.jQuery"
-      ]
-    },
     "validate": {
       "depends": [
         "jquery:jQuery"
@@ -59,59 +44,59 @@
     }
   },
   "devDependencies": {
-    "autoprefixer": "^6.3.7",
-    "babel-core": "^6.11.4",
-    "babel-plugin-transform-runtime": "^6.9.0",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-stage-2": "^6.11.0",
-    "babel-runtime": "^6.9.2",
+    "autoprefixer": "^7.1.1",
+    "babel-core": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-runtime": "^6.23.0",
     "babelify": "^7.3.0",
-    "browser-sync": "^2.13.0",
-    "browserify": "13.0.1",
-    "browserify-shim": "^3.8.12",
-    "cssnano": "^3.7.3",
-    "del": "^2.2.1",
+    "browser-sync": "^2.18.12",
+    "browserify": "14.4.0",
+    "browserify-shim": "^3.8.14",
+    "cssnano": "^3.10.0",
+    "del": "^2.2.2",
     "fs": "0.0.2",
     "gulp": "^3.9.1",
-    "gulp-cached": "^1.1.0",
+    "gulp-cached": "^1.1.1",
     "gulp-eslint": "^3.0.1",
-    "gulp-filter": "^4.0.0",
-    "gulp-if": "^2.0.1",
-    "gulp-imagemin": "^3.0.2",
+    "gulp-filter": "^5.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.3.0",
     "gulp-modify": "^0.1.1",
-    "gulp-notify": "^2.2.0",
+    "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-postcss": "^6.1.1",
+    "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
-    "gulp-rev": "^7.1.0",
-    "gulp-sass": "^2.3.2",
-    "gulp-sequence": "^0.4.5",
+    "gulp-rev": "^7.1.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sequence": "^0.4.6",
     "gulp-size": "^2.1.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.4",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
     "lazypipe": "^1.0.1",
-    "node-bourbon": "^4.2.8",
-    "node-neat": "^1.7.2",
     "path": "^0.12.7",
     "postcss-assets": "^4.1.0",
-    "postcss-reporter": "^1.4.1",
-    "postcss-scss": "^0.1.9",
-    "require-dir": "^0.3.0",
+    "postcss-reporter": "^4.0.0",
+    "postcss-scss": "^1.0.0",
+    "require-dir": "^0.3.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "yargs": "^4.8.0"
+    "yargs": "^8.0.1"
   },
   "dependencies": {
-    "axios": "^0.15.3",
-    "bunnyjs": "^0.14.28",
-    "flickity": "^2.0.5",
+    "axios": "^0.16.2",
+    "bunnyjs": "^0.14.31",
+    "flickity": "^2.0.8",
     "flickity-imagesloaded": "^2.0.0",
-    "imagesloaded": "^4.1.0",
-    "jquery": "^3.1.0",
-    "jquery-match-height": "^0.7.0",
+    "font-face-mixin": "^1.1.0",
+    "imagesloaded": "^4.1.2",
+    "include-media": "^1.4.9",
+    "jquery": "^3.2.1",
+    "jquery-match-height": "^0.7.2",
     "jquery-placeholder": "^2.3.1",
-    "lodash": "^4.13.1",
+    "lodash": "^4.17.4",
     "typi": "^2.2.0",
-    "velocity-animate": "^1.2.3"
+    "velocity-animate": "^1.5.0"
   }
 }

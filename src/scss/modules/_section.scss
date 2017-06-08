@@ -9,7 +9,7 @@
 	.section__in {
 		padding: vr(1) 0;
 
-		@include media($medium) {
+		@include media(">=medium") {
 			padding: vr(2) 0;
 		}
 
@@ -23,7 +23,7 @@
 	margin: 0 1em;
 	padding: 1px 0;
 
-	@include media($medium) {
+	@include media(">=medium") {
 		margin: 0 2em;
 	}
 
@@ -55,14 +55,14 @@
 	margin: 0 0 1.5em;
 	@include font-sans();
 	text-transform: uppercase;
-	font-size: em($fs-h3-small);
+	font-size: 23px;
 	letter-spacing: 1px;
 	
 	color: $clr-light-grey;
 
-	@include media($medium) {
+	@include media(">=medium") {
 		margin: 0 0 1.5em;
-		font-size: em($fs-h3-medium);
+		font-size: 29px;
 	}
 }
 

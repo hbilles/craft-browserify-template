@@ -4,19 +4,19 @@
 .news
 	&__listing
 
-		@include media($medium)
+		@include media(">=medium")
 			display: flex
 			flex-wrap: wrap
 			justify-content: flex-start
 			width: 100%
 
 		@supports (display: grid)
-			@include media($medium)
+			@include media(">=medium")
 				display: grid
 				grid-gap: 8px
 				grid-template-columns: repeat(2, 1fr)
 
-			@include media($large)
+			@include media(">=large")
 				grid-template-columns: repeat(3, 298px)
 
 	&__item
@@ -26,16 +26,16 @@
 		color: $clr-off-white
 		background-color: $clr-medium-grey
 
-		@include media($medium)
+		@include media(">=medium")
 			width: 48%
 			margin: 0 1% 2%
 
-		@include media($large)
+		@include media(">=large")
 			width: 296px
 			margin: 0 4px 8px
 
 		@supports (display: grid)
-			@include media($medium)
+			@include media(">=medium")
 				width: auto
 				margin: 0
 
